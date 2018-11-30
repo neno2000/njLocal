@@ -10,7 +10,7 @@ class Home extends Component {
       {/* Link to List.js */}
       <Link to={'./list'}>
         <button variant="raised">
-            My List
+            Services
         </button>
       </Link>
     </div>

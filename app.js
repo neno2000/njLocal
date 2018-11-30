@@ -14,23 +14,25 @@ var metadataRouter = require('./routes/metadataRouter');
 var app = express();
 //Read configuration files and pass to the the request object
 
-var conf = function (req, res, next) {
-    console.log(req.url); 
-    if (config.util.getEnv('NODE_ENV') == 'bcr') {
-        req.tServer = config.get("conf").bcr;
+var conf = function(req, res, next) {
+  if (config.util.getEnv('NODE_ENV') == 'bcr') {
+    req.tServer = config.get("conf").bcr;
 
-    } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
-        req.tServer = config.get("conf").dcr;
-    }
-    req.tServices = config.get("conf").resourcesLookup;
-    next();
+  } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
+    req.tServer = config.get("conf").dcr;
+  } else{
+
+  }
+  req.tServices = config.get("conf").resourcesLookup;
+
+  next()
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
-    extended: false
+  extended: false
 }));
 app.use(cookieParser());
 //remove public as client folder is mount and the guid
@@ -39,7 +41,7 @@ app.use(cookieParser());
 app.use(conf);
 app.use('/', indexRouter);
 //Services ====>
-app.use('/metadata/services', metadataRouter);
+app.use('/metadata/services', metadataRouter)
 app.use('/foretag/adminkort', adminkortRouter);
 app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);

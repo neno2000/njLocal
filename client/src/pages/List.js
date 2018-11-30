@@ -16,7 +16,7 @@ class List extends Component {
 
   // Retrieves the list of items from the Express app
   getList = () => {
-    fetch('/api/getList')
+    fetch('/metadata/services')
     .then(res => res.json())
     .then(list => this.setState({ list }))
   }
@@ -30,13 +30,12 @@ class List extends Component {
       {list.length ? (
         <div>
           {/* Render the list of items */}
-          {list.map((item) => {
+          {list.map((anObjectMapped, index) => {
             return(
-              <div>
-                {item}
-              </div>
-            );
-          })}
+                <p key={`${anObjectMapped.service}_{anObjectMapped.host}`}>
+                    {anObjectMapped.service} - {anObjectMapped.host}
+                </p>);
+            })}
         </div>
       ) : (
         <div>
