@@ -14,17 +14,28 @@ var metadataRouter = require('./routes/metadataRouter');
 var app = express();
 //Read configuration files and pass to the the request object
 
-var conf = function (req, res, next) {
-  req.conf = config.get("conf");
-  req.envVar = config.util.getEnv('NODE_ENV');
+var conf = function(req, res, next) {
+  if (config.util.getEnv('NODE_ENV') == 'bcr') {
+    req.tServer = config.get("conf").bcr;
+
+  } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
+    req.tServer = config.get("conf").dcr;
+  } else{
+
+  }
+  req.tServices = config.get("conf").resourcesLookup;
   next()
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
+//remove public as client folder is mount and the guid
+//is based in react and react-route
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(conf);
 app.use('/', indexRouter);
