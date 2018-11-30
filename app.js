@@ -10,6 +10,7 @@ var adminkortRouter = require('./routes/adminkort');
 var personkortRouter = require('./routes/personkort');
 var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
 var metadataRouter = require('./routes/metadataRouter');
+
 var app = express();
 //Read configuration files and pass to the the request object
 
@@ -28,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(conf);
 app.use('/', indexRouter);
 //Services ====>
-app.use('/metadata/services')
+app.use('/metadata/services', metadataRouter)
 app.use('/foretag/adminkort', adminkortRouter);
 app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
