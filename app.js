@@ -14,9 +14,11 @@ var app = express();
 //Read configuration files and pass to the the request object
 
 var conf = function (req, res, next) {
-  req.conf = config.get("conf");
-  req.envVar = config.util.getEnv('NODE_ENV');
-  next()
+    req.conf = config.get("conf");
+    req.envVar = req.conf["bcr"];
+    //console.log(req.conf);
+    //console.log(req.envVar);
+    next();
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -25,10 +27,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 app.use(conf);
 app.use('/', indexRouter);
 //Services ====>
-app.use('/metadata/services')
+//app.use('/metadata/services', metadataRouter);
 app.use('/foretag/adminkort', adminkortRouter);
 app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
