@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 // console.log(req.conf);
 // get the logon user from the request
-  res.send(req.conf);
+  res.send(req.tServices);
 
 });
 

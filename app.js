@@ -24,6 +24,7 @@ var conf = function(req, res, next) {
 
   }
   req.tServices = config.get("conf").resourcesLookup;
+
   next()
 }
 //serve static resources, react code will be here
