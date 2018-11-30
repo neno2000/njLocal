@@ -6,24 +6,29 @@ var router = express.Router();
 router.get('/',
     function (req, res, next) {
         //1.0 Hämta tjäntserver from conf
-        let password, username;
+        let password, username, auth, serviceurl = req.tServer.server.portHost + ":" + req.tServer.server.portPort + "/foretag/fil/hamtaOppnaFelJSON.json";
         if (!req.headers.authorization) {
-            username = req.envVar.server.debugUser;
-            password = req.envVar.server.debugPassword;
-            const auth = 'Basic ' + Buffer.from(username + ':' + password).toString('base64');
-            req.headers.authorization = auth;
+            username = req.tServer.server.debugUser;
+            password = req.tServer.server.debugPassword;
+            auth = 'Basic ' + Buffer.from(username + ':' + password).toString('base64');
+            // req.headers.authorization = auth;
+        } else {
+            auth = req.headers.authorization;
         }
-        // req.envVar
-        //if (req.headers.authorization) {
-
-        //} 
-        //as portal
-        // take info from Request.
-        // använd ernesto, dvs läss auth property if not there use debug user from conf
-        console.log(username);
-        //console.log(req.headers);
-        // test
-        res.send('hamtaOppnaFel');
+        const options = {
+            url: serviceurl,
+            method: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            headers: {
+                authorization: auth
+            }
+        }
+        request(options, function (error, response, body) {
+            if (!error) {
+                res.send(response.body);
+            }
+        });
     });
 
 module.exports = router;
