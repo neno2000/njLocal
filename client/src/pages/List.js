@@ -28,15 +28,14 @@ class List extends Component {
   return (
     <div className="App">
       <h2>Services</h2>
-      {/* Check to see if any items are found*/}
-      ReactDOM.render(
+
+
         <BootstrapTable data={list} striped hover>
             <TableHeaderColumn isKey dataField='service'>Rest Service</TableHeaderColumn>
-            <TableHeaderColumn dataField='Host'>Target Host</TableHeaderColumn>
-        </BootstrapTable>,
-        document.getElementById('basic')
+            <TableHeaderColumn dataField='host'>Target Host</TableHeaderColumn>
+        </BootstrapTable>
     </div>
-  );
+    );
 }
 }
 
