@@ -20,12 +20,9 @@ var conf = function(req, res, next) {
 
   } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
     req.tServer = config.get("conf").dcr;
-  } else{
-
-  }
+  } 
   req.tServices = config.get("conf").resourcesLookup;
-
-  next()
+    next();
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -41,7 +38,7 @@ app.use(cookieParser());
 app.use(conf);
 app.use('/', indexRouter);
 //Services ====>
-app.use('/metadata/services', metadataRouter)
+app.use('/metadata/services', metadataRouter);
 app.use('/foretag/adminkort', adminkortRouter);
 app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
