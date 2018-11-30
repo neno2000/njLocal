@@ -28,8 +28,6 @@ class List extends Component {
   return (
     <div className="App">
       <h2>Services</h2>
-
-
         <BootstrapTable data={list} striped hover>
             <TableHeaderColumn isKey dataField='service'>Rest Service</TableHeaderColumn>
             <TableHeaderColumn dataField='host'>Target Host</TableHeaderColumn>
