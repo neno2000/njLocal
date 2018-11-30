@@ -5,6 +5,7 @@
 /client/node_modules
 /client/build
 /client/static
+/client/src/index.css
 /config
 /.pnp
 .pnp.js
