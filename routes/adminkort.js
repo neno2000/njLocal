@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var lUtility require('../model/util');
+var lUtility = require('./../model/util');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
