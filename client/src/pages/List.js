@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+
 
 class List extends Component {
   // Initialize the state
@@ -25,24 +27,14 @@ class List extends Component {
 
   return (
     <div className="App">
-      <h1>List of Items</h1>
+      <h2>Services</h2>
       {/* Check to see if any items are found*/}
-      {list.length ? (
-        <div>
-          {/* Render the list of items */}
-          {list.map((anObjectMapped, index) => {
-            return(
-                <p key={`${anObjectMapped.service}_{anObjectMapped.host}`}>
-                    {anObjectMapped.service} - {anObjectMapped.host}
-                </p>);
-            })}
-        </div>
-      ) : (
-        <div>
-          <h2>No List Items Found</h2>
-        </div>
-      )
-    }
+      ReactDOM.render(
+        <BootstrapTable data={list} striped hover>
+            <TableHeaderColumn isKey dataField='service'>Rest Service</TableHeaderColumn>
+            <TableHeaderColumn dataField='Host'>Target Host</TableHeaderColumn>
+        </BootstrapTable>,
+        document.getElementById('basic')
     </div>
   );
 }
