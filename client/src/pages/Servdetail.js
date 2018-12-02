@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Switch, Route } from 'react-router-dom'
 
 
 function onSelectRow(row, isSelected, e) {
   if (isSelected) {
-    console.log(row.key);
-    var key = row.key;
     alert(`You just selected '${row['name']}'`)
-
-    const Servdetail = () => (
-      <Switch>
-
-        <Route exact path='/:key' component={Servdetail}/>
-      </Switch>
-    )
-
-
   }
 }
 
@@ -29,7 +17,7 @@ const selectRowProp = {
   bgColor: 'gold'
 };
 
-class List extends Component {
+class Servdetail extends Component {
   // Initialize the state
   constructor(props){
     super(props);
@@ -62,7 +50,7 @@ class List extends Component {
           >
             <TableHeaderColumn isKey dataField='key'
             >
-              key
+              ID
             </TableHeaderColumn>
             <TableHeaderColumn dataField='name'
             >
@@ -78,4 +66,4 @@ class List extends Component {
     }
 }
 
-export default List;
+export default Servdetail;
