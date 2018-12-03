@@ -6,20 +6,13 @@ router.get('/', function(req, res, next) {
   var services = [];
   var service = {};
 //  console.log(req.tServices);
-  for (i in req.tServices)
-  {
-      services[i] =
-      {
-        key: req.tServices[i].serviceNr,
-        name: req.tServices[i].service,
-        target: req.tServices[i].host,
-      };
-  }
-  res.send(services);
+req.tServices
+  res.send(req.tServices);
 });
 
 /* GET users listing. */
-router.get('/:serviceNr', function(req, res, next) {
+/*
+router.get('/:serviceName', function(req, res, next) {
 // get the logon user from the request
   for (i in req.tServices)
   {
@@ -32,4 +25,5 @@ router.get('/:serviceNr', function(req, res, next) {
      }
   }
 });
+*/
 module.exports = router;

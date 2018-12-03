@@ -37,6 +37,8 @@ class List extends Component {
     this.getList();
   }
 
+  
+
   // Retrieves the list of items from the Express app
   getList = () => {
     fetch('/metadata/services')

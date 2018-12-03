@@ -1,35 +1,53 @@
-import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+/* Import statements */
+import React, { Component } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
+import Servdetail from './Servdetail';
+import Links from './Links'
 
-class List extends React.Component {
-  render () {
+
+
+/* App component */
+class List extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      list: []
+    }
+  }
+  // Fetch the list on first mount
+  componentDidMount() {
+    this.getList();
+  }
+
+  // Retrieves the list of items from the Express app
+  getList = () => {
+    fetch('/metadata/services')
+    .then(res => res.json())
+    .then(list => this.setState({ list }))
+  }
+
+  render() {
+    const { list } = this.state;
+    var lin = [];
+    for (var x in list){
+      console.log(x);
+      lin.push(x);
+    }
+
     return (
-      <ul className="navigation grid grid-gutters large-grid-fit med-grid-fit small-grid-1of2">
-        <li className="grid-cell">
-          <Link className="navigation-link navigation-brand" to="/">
-            ReactSpeed
-          </Link>
-        </li>
-        <li className="grid-cell">
-          <a className="navigation-link"
-            href="https://leanpub.com/reactspeedcoding">
-              <i className="fa fa-book"></i> Book
-          </a>
-        </li>
-        <li className="grid-cell">
-          <a className="navigation-link"
-            href="https://github.com/manavsehgal/reactspeedcoding">
-              <i className="fa fa-github"></i> Code
-          </a>
-        </li>
-        <li className="grid-cell">
-          <Link className="navigation-link" to="/blog">
-            <i className="fa fa-comments"></i> Blog
-          </Link>
-        </li>
-      </ul>
-    );
+      <div>
+        <nav className="navbar navbar-light">
+          <ul className="nav navbar-nav">
+            {
+              Object.keys(lin).map(function(key) {
+                return <li className="list-group-item list-group-item-info"> <Link to="/:serviceName">{lin[key]}</Link></li>
+              }.bind(this))
+            }
+          </ul>
+         </nav>
+         <Route path="/:serviceName" component={Servdetail}/>
+      </div>
+    )
   }
 }
-
 export default List;
