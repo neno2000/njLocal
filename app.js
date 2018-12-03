@@ -20,7 +20,7 @@ var conf = function(req, res, next) {
 
   } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
     req.tServer = config.get("conf").dcr;
-  } 
+  }
   req.tServices = config.get("conf").resourcesLookup;
     next();
 }

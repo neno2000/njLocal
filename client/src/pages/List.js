@@ -31,9 +31,6 @@ class List extends Component {
       list: []
     }
   }
-  state = {
-  toDashboard: false,
-  }
 
   // Fetch the list on first mount
   componentDidMount() {
