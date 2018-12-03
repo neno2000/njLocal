@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Switch, Route } from 'react-router-dom'
-
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom'
 
 function onSelectRow(row, isSelected, e) {
   if (isSelected) {
-    console.log(row.key);
-    var key = row.key;
+    console.log(this);
+  //  this.global.history
+    var key = row.name;
+
+  //  e.history.push(`/target`)
     alert(`You just selected '${row['name']}'`)
-
-    const Servdetail = () => (
-      <Switch>
-
-        <Route exact path='/:key' component={Servdetail}/>
-      </Switch>
-    )
 
 
   }
 }
-
 const selectRowProp = {
   mode: 'radio',
   clickToSelect: true,
@@ -37,6 +31,9 @@ class List extends Component {
       list: []
     }
   }
+  state = {
+  toDashboard: false,
+  }
 
   // Fetch the list on first mount
   componentDidMount() {
@@ -49,12 +46,10 @@ class List extends Component {
     .then(res => res.json())
     .then(list => this.setState({ list }))
   }
-  getSelectedRowKeys() {
-    //Here is your answer
-    console.log(this.refs.table.state.selectedRowKeys)
-  }
+
   render() {
       const { list } = this.state;
+
       return (
         <div>
           <BootstrapTable data={list}
