@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom'
+
 
 function onSelectRow(row, isSelected, e) {
   if (isSelected) {
-    console.log(this);
-  //  this.global.history
-    var key = row.name;
-
-  //  e.history.push(`/target`)
     alert(`You just selected '${row['name']}'`)
-
-
   }
 }
+
 const selectRowProp = {
   mode: 'radio',
   clickToSelect: true,
@@ -23,7 +17,7 @@ const selectRowProp = {
   bgColor: 'gold'
 };
 
-class List extends Component {
+class Servdetail extends Component {
   // Initialize the state
   constructor(props){
     super(props);
@@ -43,10 +37,12 @@ class List extends Component {
     .then(res => res.json())
     .then(list => this.setState({ list }))
   }
-
+  getSelectedRowKeys() {
+    //Here is your answer
+    console.log(this.refs.table.state.selectedRowKeys)
+  }
   render() {
       const { list } = this.state;
-
       return (
         <div>
           <BootstrapTable data={list}
@@ -54,7 +50,7 @@ class List extends Component {
           >
             <TableHeaderColumn isKey dataField='key'
             >
-              key
+              ID
             </TableHeaderColumn>
             <TableHeaderColumn dataField='name'
             >
@@ -70,4 +66,4 @@ class List extends Component {
     }
 }
 
-export default List;
+export default Servdetail;
