@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\client",
+    "\\client\\public",
+    "\\client\\src",
+    "\\config",
+    "\\model",
+    "\\public",
+    "\\routes"
+  ],
+  "SelectedNode": "\\client\\src\\serviceWorker.js",
+  "PreviewInSolutionExplorer": false
+}
