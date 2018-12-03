@@ -1,66 +1,35 @@
 import React, { Component } from 'react';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-
-
-function onSelectRow(row, isSelected, e) {
-  if (isSelected) {
-    alert(`You just selected '${row['name']}'`)
-  }
-}
-
-const selectRowProp = {
-  mode: 'radio',
-  clickToSelect: true,
-  unselectable: [2],
-  selected: [1],
-  onSelect: onSelectRow,
-  bgColor: 'gold'
-};
 
 class Servdetail extends Component {
   // Initialize the state
   constructor(props){
     super(props);
+    this.targService = "/metadata/services" + props.location.pathname;
+    console.log("hello x");
+    console.log(props.location.pathname);
     this.state = {
-      list: []
+      service: []
     }
   }
 
   // Fetch the list on first mount
   componentDidMount() {
-    this.getList();
+    this.getService();
   }
 
   // Retrieves the list of items from the Express app
-  getList = () => {
-    fetch('/metadata/services')
+  getService = () => {
+    console.log(this.targService);
+    fetch(this.targService)
     .then(res => res.json())
-    .then(list => this.setState({ list }))
+    .then(service => this.setState({ service }))
   }
-  getSelectedRowKeys() {
-    //Here is your answer
-    console.log(this.refs.table.state.selectedRowKeys)
-  }
+
   render() {
-      const { list } = this.state;
+      console.log(this.state);
+      const { service } = this.state;
       return (
         <div>
-          <BootstrapTable data={list}
-                          selectRow={selectRowProp}
-          >
-            <TableHeaderColumn isKey dataField='key'
-            >
-              ID
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='name'
-            >
-              Name
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='target'
-            >
-              Value
-            </TableHeaderColumn>
-          </BootstrapTable>
         </div>
       )
     }

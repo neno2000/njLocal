@@ -1,8 +1,8 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import Servdetail from './Servdetail';
-import Links from './Links'
+
 
 
 
@@ -35,17 +35,19 @@ class List extends Component {
     }
 
     return (
+
       <div>
+        <h2>Available Services</h2>
         <nav className="navbar navbar-light">
           <ul className="nav navbar-nav">
             {
               Object.keys(lin).map(function(key) {
-                return <li className="list-group-item list-group-item-info"> <Link to="/:serviceName">{lin[key]}</Link></li>
-              }.bind(this))
+                return <li className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]}</Link></li>
+              })
             }
           </ul>
          </nav>
-         <Route path="/:serviceName" component={Servdetail}/>
+         <Route path="/:servicedetail" component={Servdetail}/>
       </div>
     )
   }
