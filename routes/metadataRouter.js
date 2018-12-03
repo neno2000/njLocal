@@ -14,15 +14,12 @@ router.get('/', function(req, res, next) {
   }
 //  console.log(req.tServices);
 req.tServices
-  console.log(req.query);
   if (isEmpty(req.query)){
     res.send(req.tServices)
   }
   else{
-     res.send("pankaka")
-     
+    res.send(req.tServices[req.query.service]);
   }
-
 });
 
 module.exports = router;
