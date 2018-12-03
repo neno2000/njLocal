@@ -18,8 +18,7 @@ var app = express();
 var conf = function(req, res, next) {
   if (config.util.getEnv('NODE_ENV') == 'bcr') {
     req.tServer = config.get("conf").bcr;
-
-  } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
+      } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
     req.tServer = config.get("conf").dcr;
     }
     req.tServices = config.get("conf").resourcesLookup;
