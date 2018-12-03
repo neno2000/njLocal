@@ -10,6 +10,7 @@ var adminkortRouter = require('./routes/adminkort');
 var personkortRouter = require('./routes/personkort');
 var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
 var metadataRouter = require('./routes/metadataRouter');
+var lUtility = require('./model/util');
 
 var app = express();
 //Read configuration files and pass to the the request object
@@ -20,8 +21,9 @@ var conf = function(req, res, next) {
 
   } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
     req.tServer = config.get("conf").dcr;
-  }
-  req.tServices = config.get("conf").resourcesLookup;
+    }
+    req.tServices = config.get("conf").resourcesLookup;
+    req.lUtility = lUtility;
     next();
 }
 //serve static resources, react code will be here
