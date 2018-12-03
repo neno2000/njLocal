@@ -1,73 +1,35 @@
-import React, { Component } from 'react';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom'
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
-function onSelectRow(row, isSelected, e) {
-  if (isSelected) {
-    console.log(this);
-  //  this.global.history
-    var key = row.name;
-
-  //  e.history.push(`/target`)
-    alert(`You just selected '${row['name']}'`)
-
-
+class List extends React.Component {
+  render () {
+    return (
+      <ul className="navigation grid grid-gutters large-grid-fit med-grid-fit small-grid-1of2">
+        <li className="grid-cell">
+          <Link className="navigation-link navigation-brand" to="/">
+            ReactSpeed
+          </Link>
+        </li>
+        <li className="grid-cell">
+          <a className="navigation-link"
+            href="https://leanpub.com/reactspeedcoding">
+              <i className="fa fa-book"></i> Book
+          </a>
+        </li>
+        <li className="grid-cell">
+          <a className="navigation-link"
+            href="https://github.com/manavsehgal/reactspeedcoding">
+              <i className="fa fa-github"></i> Code
+          </a>
+        </li>
+        <li className="grid-cell">
+          <Link className="navigation-link" to="/blog">
+            <i className="fa fa-comments"></i> Blog
+          </Link>
+        </li>
+      </ul>
+    );
   }
-}
-const selectRowProp = {
-  mode: 'radio',
-  clickToSelect: true,
-  unselectable: [2],
-  selected: [1],
-  onSelect: onSelectRow,
-  bgColor: 'gold'
-};
-
-class List extends Component {
-  // Initialize the state
-  constructor(props){
-    super(props);
-    this.state = {
-      list: []
-    }
-  }
-
-  // Fetch the list on first mount
-  componentDidMount() {
-    this.getList();
-  }
-
-  // Retrieves the list of items from the Express app
-  getList = () => {
-    fetch('/metadata/services')
-    .then(res => res.json())
-    .then(list => this.setState({ list }))
-  }
-
-  render() {
-      const { list } = this.state;
-
-      return (
-        <div>
-          <BootstrapTable data={list}
-                          selectRow={selectRowProp}
-          >
-            <TableHeaderColumn isKey dataField='key'
-            >
-              key
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='name'
-            >
-              Name
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='target'
-            >
-              Value
-            </TableHeaderColumn>
-          </BootstrapTable>
-        </div>
-      )
-    }
 }
 
 export default List;
