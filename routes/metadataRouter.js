@@ -18,6 +18,8 @@ req.tServices
     res.send(req.tServices)
   }
   else{
+    var message = {};
+    console.log(req.tServices[req.query.service]);
     res.send(req.tServices[req.query.service]);
   }
 });
