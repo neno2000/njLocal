@@ -1,66 +1,44 @@
 import React, { Component } from 'react';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-
-
-function onSelectRow(row, isSelected, e) {
-  if (isSelected) {
-    alert(`You just selected '${row['name']}'`)
-  }
-}
-
-const selectRowProp = {
-  mode: 'radio',
-  clickToSelect: true,
-  unselectable: [2],
-  selected: [1],
-  onSelect: onSelectRow,
-  bgColor: 'gold'
-};
 
 class Servdetail extends Component {
   // Initialize the state
   constructor(props){
     super(props);
+    this.targService = "/metadata/services?service=" + props.location.pathname;
     this.state = {
-      list: []
+      service: {}
+    }
+    this.state.data = {
+      data: props.location.pathname
+
     }
   }
 
   // Fetch the list on first mount
   componentDidMount() {
-    this.getList();
+    this.getService();
   }
 
   // Retrieves the list of items from the Express app
-  getList = () => {
-    fetch('/metadata/services')
+  getService = () => {
+  //  console.log(this.targService);
+    fetch(this.targService)
     .then(res => res.json())
-    .then(list => this.setState({ list }))
+    .then(service => this.setState({ service }))
+
   }
-  getSelectedRowKeys() {
-    //Here is your answer
-    console.log(this.refs.table.state.selectedRowKeys)
-  }
+
   render() {
-      const { list } = this.state;
+      const { service } = this.state;
+      const { data } = this.state.data;
+      console.log( data );
       return (
         <div>
-          <BootstrapTable data={list}
-                          selectRow={selectRowProp}
-          >
-            <TableHeaderColumn isKey dataField='key'
-            >
-              ID
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='name'
-            >
-              Name
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='target'
-            >
-              Value
-            </TableHeaderColumn>
-          </BootstrapTable>
+           <title>bla bla</title>
+           <h1>Service Repository</h1>
+           <h2>Detaljerad beskrivning for tjänsten: {data}</h2>
+           <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
+           <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
         </div>
       )
     }

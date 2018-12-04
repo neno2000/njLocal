@@ -5,31 +5,23 @@ router.get('/', function(req, res, next) {
 // get the logon user from the request
   var services = [];
   var service = {};
+  function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+  }
 //  console.log(req.tServices);
-  for (i in req.tServices)
-  {
-      services[i] =
-      {
-        key: req.tServices[i].serviceNr,
-        name: req.tServices[i].service,
-        target: req.tServices[i].host,
-      };
+req.tServices
+  if (isEmpty(req.query)){
+    res.send(req.tServices)
   }
-  res.send(services);
-});
-
-/* GET users listing. */
-router.get('/:serviceNr', function(req, res, next) {
-// get the logon user from the request
-  for (i in req.tServices)
-  {
-
-     if ( req.tServices[i].serviceNr === req.params.serviceNr )
-     {
-       console.log(req.tServices[i]);
-       res.send(req.tServices[i]);
-       return;
-     }
+  else{
+    var message = {};
+    console.log(req.tServices[req.query.service]);
+    res.send(req.tServices[req.query.service]);
   }
 });
+
 module.exports = router;

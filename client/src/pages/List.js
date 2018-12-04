@@ -1,37 +1,19 @@
+/* Import statements */
 import React, { Component } from 'react';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom'
-
-function onSelectRow(row, isSelected, e) {
-  if (isSelected) {
-    console.log(this);
-  //  this.global.history
-    var key = row.name;
-
-  //  e.history.push(`/target`)
-    alert(`You just selected '${row['name']}'`)
+import { Link, Route } from 'react-router-dom';
+import Servdetail from './Servdetail';
 
 
-  }
-}
-const selectRowProp = {
-  mode: 'radio',
-  clickToSelect: true,
-  unselectable: [2],
-  selected: [1],
-  onSelect: onSelectRow,
-  bgColor: 'gold'
-};
 
+
+/* App component */
 class List extends Component {
-  // Initialize the state
   constructor(props){
     super(props);
     this.state = {
       list: []
     }
   }
-
   // Fetch the list on first mount
   componentDidMount() {
     this.getList();
@@ -45,29 +27,29 @@ class List extends Component {
   }
 
   render() {
-      const { list } = this.state;
-
-      return (
-        <div>
-          <BootstrapTable data={list}
-                          selectRow={selectRowProp}
-          >
-            <TableHeaderColumn isKey dataField='key'
-            >
-              key
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='name'
-            >
-              Name
-            </TableHeaderColumn>
-            <TableHeaderColumn dataField='target'
-            >
-              Value
-            </TableHeaderColumn>
-          </BootstrapTable>
-        </div>
-      )
+    const { list } = this.state;
+    var lin = [];
+    for (var x in list){
+      console.log(x);
+      lin.push(x);
     }
-}
 
+    return (
+
+      <div>
+        <h2>Available Services</h2>
+        <nav className="navbar navbar-light">
+          <ul className="nav navbar-nav">
+            {
+              Object.keys(lin).map(function(key) {
+                return <li className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]}</Link></li>
+              })
+            }
+          </ul>
+         </nav>
+         <Route path="/:servicedetail" component={Servdetail}/>
+      </div>
+    )
+  }
+}
 export default List;
