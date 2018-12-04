@@ -18,7 +18,7 @@ var util = {
 
         let password, username, auth, serviceurl = baseurl + ":" + port + url;
 
-        console.log(serviceurl);
+        console.log("Url: " + serviceurl);
 
         if (!req.headers.authorization) {
             username = req.tServer.server.debugUser;
@@ -32,14 +32,14 @@ var util = {
             method: method,
             cache: false,
             data : reqObj,
-            contentType: "application/json; charset=utf-8",
+            contentType: "application/json; charset=utf-8", 
             headers: {
                 authorization: auth
             }
         }
         const scb = function (error, response, body) {
             if (!error) {
-                console.log(response.body);
+               // console.log(response.body);
                 let payload;
                 try {
                     payload = JSON.parse(response.body);

@@ -11,6 +11,9 @@ var personkortRouter = require('./routes/personkort');
 var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
 var hamtaAdministratorer = require('./routes/hamtaAdministratorer');
 var hamtaGuiden = require('./routes/hamtaguiden');
+var hamtakalenderitp1 = require('./routes/hamtakalenderitp1JSON');
+var hamtakalenderitp2 = require('./routes/hamtakalenderitp2JSON');
+var hamtapuffar = require('./routes/hamtapuffarJSON');
 var metadataRouter = require('./routes/metadataRouter');
 var lUtility = require('./model/util');
 
@@ -49,5 +52,8 @@ app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
 app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', hamtaAdministratorer);
 app.use('/foretag/hamtaguidenJSON.json', hamtaGuiden);
+app.use('/foretag/hamtakalenderitp1JSON.json', hamtakalenderitp1);
+app.use('/foretag/hamtakalenderitp2JSON.json', hamtakalenderitp2);
+app.use('/foretag/hamtapuffarJSON.json', hamtapuffar);
 
 module.exports = app;
