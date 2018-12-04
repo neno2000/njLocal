@@ -36,27 +36,32 @@ var conf = function(req, res, next) {
 
   } else if (config.util.getEnv('NODE_ENV') === 'dcr') {
     req.tServer = config.get("conf").dcr;
-  }
-  else if (config.util.getEnv('NODE_ENV') === 'scr') {
+  } else if (config.util.getEnv('NODE_ENV') === 'scr') {
 
     req.tServer = config.get("conf").scr;
   }
   // check if ABAP or Portal endpoint and assign function
+  console.log("hello");
+  try {
+    console.log(config.get("conf").resourcesLookup[req.url].host);
 
-   console.log(config.get("conf").resourcesLookup[req.url].host);
-
-    if (config.get("conf").resourcesLookup[req.url].host === "abapHost"){
+    if (config.get("conf").resourcesLookup[req.url].host === "abapHost") {
       req.lUtility = laUtility;
-    }else if (config.get("conf").resourcesLookup[req.url].host === "portHost"){
+    } else if (config.get("conf").resourcesLookup[req.url].host === "portHost") {
       req.lUtility = lUtility;
-    }else {
-// metadata service
-      console.log("metadata service called");
+    } else {
+      // metadata service call
     }
-
     req.tServices = config.get("conf").resourcesLookup;
-    next();
- }
+  } catch (e) {
+    req.tServices = config.get("conf").resourcesLookup;
+    console.log("metadata call");
+  } finally {
+
+  }
+
+  next();
+}
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));

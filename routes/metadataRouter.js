@@ -3,7 +3,6 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 // get the logon user from the request
- console.log(req);
   var services = [];
   var service = {};
   function isEmpty(obj) {
