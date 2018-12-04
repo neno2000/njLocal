@@ -10,6 +10,7 @@ var adminkortRouter = require('./routes/adminkort');
 var personkortRouter = require('./routes/personkort');
 var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
 var hamtaAdministratorer = require('./routes/hamtaAdministratorer');
+var hamtaGuiden = require('./routes/hamtaguiden');
 var metadataRouter = require('./routes/metadataRouter');
 var lUtility = require('./model/util');
 
@@ -20,7 +21,7 @@ var conf = function(req, res, next) {
   if (config.util.getEnv('NODE_ENV') === 'bcr') {
     req.tServer = config.get("conf").bcr;
 
-  } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
+  } else if (config.util.getEnv('NODE_ENV') == 'dcr') { 
     req.tServer = config.get("conf").dcr;
     }
     req.tServices = config.get("conf").resourcesLookup;
@@ -47,5 +48,6 @@ app.use('/foretag/adminkort', adminkortRouter);
 app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
 app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', hamtaAdministratorer);
+app.use('/foretag/hamtaguidenJSON.json', hamtaGuiden);
 
 module.exports = app;
