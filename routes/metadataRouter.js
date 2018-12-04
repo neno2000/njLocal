@@ -13,9 +13,9 @@ router.get('/', function(req, res, next) {
     return true;
   }
 //  console.log(req.tServices);
-req.tServices
-  if (isEmpty(req.query)){
-    res.send(req.tServices)
+//req.tServices
+  if (isEmpty(req.query)) {
+      res.send(req.tServices);
   }
   else{
     var message = {};
