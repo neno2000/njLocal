@@ -24,7 +24,7 @@ var util = {
 
         let password, username, auth, serviceurl = baseurl + ":" + port + service;
        // start by retrieveing the cookie....
-       
+        console.log();
         console.log(serviceurl);
 
         if (!req.headers.authorization) {
