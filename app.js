@@ -36,20 +36,19 @@ var conf = function(req, res, next) {
 
   } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
     req.tServer = config.get("conf").dcr;
-  }
-  else if (config.util.getEnv('NODE_ENV') == 'scr') {
+  } else if (config.util.getEnv('NODE_ENV') == 'scr') {
     req.tServer = config.get("conf").scr;
   }
   // check if ABAP or Portal endpoint and assign function
 
-   console.log(config.get("conf").resourcesLookup[req.url].host);
-    if (config.get("conf").resourcesLookup[req.url].host == "abapHost"){
-      req.lUtility = laUtility;
-    }else if (config.get("conf").resourcesLookup[req.url].host == "portHost"){
-      req.lUtility = lUtility;
-    }
-    req.tServices = config.get("conf").resourcesLookup;
-    next();
+  console.log(config.get("conf").resourcesLookup[req.url].host);
+  if (config.get("conf").resourcesLookup[req.url].host == "abapHost") {
+    req.lUtility = laUtility;
+  } else if (config.get("conf").resourcesLookup[req.url].host == "portHost") {
+    req.lUtility = lUtility;
+  }
+  req.tServices = config.get("conf").resourcesLookup;
+  next();
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
