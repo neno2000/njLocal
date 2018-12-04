@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var adminkortRouter = require('./routes/adminkort');
 var personkortRouter = require('./routes/personkort');
 var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
+var hamtaAdministratorer = require('./routes/hamtaAdministratorer');
 var metadataRouter = require('./routes/metadataRouter');
 var lUtility = require('./model/util');
 
@@ -16,10 +17,10 @@ var app = express();
 //Read configuration files and pass to the the request object
 
 var conf = function(req, res, next) {
-  if (config.util.getEnv('NODE_ENV') == 'bcr') {
+  if (config.util.getEnv('NODE_ENV') === 'bcr') {
     req.tServer = config.get("conf").bcr;
 
-  } else if (config.util.getEnv('NODE_ENV') == 'dcr') {
+  } else if (config.util.getEnv('NODE_ENV') === 'dcr') {
     req.tServer = config.get("conf").dcr;
     }
     req.tServices = config.get("conf").resourcesLookup;
@@ -38,11 +39,13 @@ app.use(cookieParser());
 //is based in react and react-route
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(conf);
+app.use(cors());
 app.use('/', indexRouter);
 //Services ====>
 app.use('/metadata/services', metadataRouter);
 app.use('/foretag/adminkort', adminkortRouter);
 app.use('/foretag/adminkort/personkort', personkortRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
+app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', hamtaAdministratorer);
 
 module.exports = app;
