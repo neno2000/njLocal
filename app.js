@@ -37,8 +37,7 @@ var conf = function(req, res, next) {
   } else if (config.util.getEnv('NODE_ENV') === 'dcr') {
     req.tServer = config.get("conf").dcr;
   }
-<<<<<<< HEAD
-  else if (config.util.getEnv('NODE_ENV') == 'scr') {
+  else if (config.util.getEnv('NODE_ENV') === 'scr') {
 =======
   else if (config.util.getEnv('NODE_ENV') === 'scr') {
 >>>>>>> 6b3b41abff87ca61ab93ffeefefbbd4dde34e3e0
@@ -47,10 +46,9 @@ var conf = function(req, res, next) {
   // check if ABAP or Portal endpoint and assign function
 
    console.log(config.get("conf").resourcesLookup[req.url].host);
-<<<<<<< HEAD
-    if (config.get("conf").resourcesLookup[req.url].host == "abapHost"){
+    if (config.get("conf").resourcesLookup[req.url].host === "abapHost"){
       req.lUtility = laUtility;
-    }else if (config.get("conf").resourcesLookup[req.url].host == "portHost"){
+    }else if (config.get("conf").resourcesLookup[req.url].host === "portHost"){
 =======
     if (config.get("conf").resourcesLookup[req.url].host === "abapHost"){
       req.lUtility = laUtility;
