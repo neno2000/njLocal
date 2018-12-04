@@ -6,9 +6,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //Application routing ind is not used!!
 var indexRouter = require('./routes/index');
-var adminkortRouter = require('./routes/adminkort');
-var personkortRouter = require('./routes/personkort');
-var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
+var abapRouter = require('./routes/abapRouter');
+
+//var adminkortRouter = require('./routes/adminkort');
+//var personkortRouter = require('./routes/personkort');
+//var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
+
+var javaRouter = require('./routes/javaRouter');
 var hamtaAdministratorer = require('./routes/hamtaAdministratorer');
 var hamtaGuiden = require('./routes/hamtaguiden');
 var hamtakalenderitp1 = require('./routes/hamtakalenderitp1JSON');
@@ -43,10 +47,7 @@ var conf = function(req, res, next) {
     }else if (config.get("conf").resourcesLookup[req.url].host == "portHost"){
       req.lUtility = lUtility;
     }
-
     req.tServices = config.get("conf").resourcesLookup;
-
-
     next();
 }
 //serve static resources, react code will be here
@@ -63,12 +64,13 @@ app.use(express.urlencoded({
 app.use(conf);
 app.use(cors());
 app.use('/', indexRouter);
+
 //Services ====>
 app.use('/metadata/services', metadataRouter);
-app.use('/foretag/adminkort', adminkortRouter);
-app.use('/foretag/adminkort/personkort', personkortRouter);
-app.use('/foretag/fil/hamtaOppnaFelJSON.json', hamtaOppnaFelRouter);
-app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', hamtaAdministratorer);
+app.use('/foretag/adminkort', abapRouter);
+app.use('/foretag/adminkort/personkort', abapRouter);
+app.use('/foretag/fil/hamtaOppnaFelJSON.json', javaRouter);
+app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', javaRouter);
 app.use('/foretag/hamtaguidenJSON.json', hamtaGuiden);
 app.use('/foretag/hamtakalenderitp1JSON.json', hamtakalenderitp1);
 app.use('/foretag/hamtakalenderitp2JSON.json', hamtakalenderitp2);
