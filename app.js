@@ -48,7 +48,7 @@ var conf = function(req, res, next) {
     if (config.get("conf").resourcesLookup[req.url].host === "abapHost"){
       req.lUtility = laUtility;
     }else if (config.get("conf").resourcesLookup[req.url].host === "portHost"){
-      req.lUtility = laUtility;
+      req.lUtility = lUtility;
     }else {
 // metadata service
       console.log("metadata service called");
