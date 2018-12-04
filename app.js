@@ -41,7 +41,7 @@ var conf = function(req, res, next) {
     req.tServer = config.get("conf").scr;
   }
   // check if ABAP or Portal endpoint and assign function
-  console.log("hello");
+
   try {
     console.log(config.get("conf").resourcesLookup[req.url].host);
 
@@ -53,14 +53,16 @@ var conf = function(req, res, next) {
       // metadata service call
     }
     req.tServices = config.get("conf").resourcesLookup;
+
   } catch (e) {
     req.tServices = config.get("conf").resourcesLookup;
     console.log("metadata call");
+
   } finally {
 
   }
-
   next();
+
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));

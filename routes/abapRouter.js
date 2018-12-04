@@ -1,10 +1,18 @@
 var express = require('express');
+var request = require('request');
 var router = express.Router();
 
+/* GET oppna fel. */
 router.get('/',
     function (req, res, next) {
-        // console.log(req.url);
-       
+
+        let resultbody = {};
+        let result = function(response) {
+            resultbody = response;
+        }
+
+        req.lUtility.getRequest(req, req.originalUrl, "GET", res);
+
     });
 
 module.exports = router;

@@ -14,17 +14,19 @@ var router = express.Router();
 
 var util = {
     getRequest: function (req, service, method, res) {
+        // get the session cookie
+
         console.log("I am here Now in ABAP");
         const host = req.tServices[service].host;
         const portType = req.tServices[service].port;
-
+        const authUrl = host +  req.tServer.server.portPort + req.tServer.server.portAuth;
         const baseurl = req.tServer.server[host];
         const port = req.tServer.server[portType];
-        console.log(port);
+        console.log(authUrl);
 
         let password, username, auth, serviceurl = baseurl + ":" + port + service;
        // start by retrieveing the cookie....
-        console.log();
+      
         console.log(serviceurl);
 
         if (!req.headers.authorization) {
