@@ -13,10 +13,12 @@ router.get('/',
         let result = function(response) {
             resultbody = response;
         }
-        req.lUtility.getRequest(req, "/foretag/fil/hamtaOppnaFelJSON.json", "GET", res);
+//        req.lUtility.getRequest(req, "/foretag/fil/hamtaOppnaFelJSON.json", "GET", res);
+        console.log(req);
+        req.lUtility.getRequest(req, req.originalUrl, "GET", res);
        // res.send(resultbody);
         //payload();
-        ////1.0 Hämta tjäntserver from conf
+        ////1.0 Hï¿½mta tjï¿½ntserver from conf
         //let password, username, auth, serviceurl = req.tServer.server.portHost + ":" + req.tServer.server.portPort + "/foretag/fil/hamtaOppnaFelJSON.json";
         //if (!req.headers.authorization) {
         //    username = req.tServer.server.debugUser;

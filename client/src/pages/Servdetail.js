@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 class Servdetail extends Component {
   // Initialize the state
@@ -10,10 +11,8 @@ class Servdetail extends Component {
     }
     this.state.data = {
       data: props.location.pathname
-
     }
   }
-
   // Fetch the list on first mount
   componentDidMount() {
     this.getService();
@@ -25,9 +24,7 @@ class Servdetail extends Component {
     fetch(this.targService)
     .then(res => res.json())
     .then(service => this.setState({ service }))
-
   }
-
   render() {
       const { service } = this.state;
       const { data } = this.state.data;
@@ -39,6 +36,24 @@ class Servdetail extends Component {
            <h2>Detaljerad beskrivning for tjänsten: {data}</h2>
            <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
            <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
+           <div>
+             <BootstrapTable data={data.params}
+                             selectRow={selectRowProp}
+             >
+               <TableHeaderColumn isKey dataField='key'
+               >
+                 key
+               </TableHeaderColumn>
+               <TableHeaderColumn dataField='name'
+               >
+                 Name
+               </TableHeaderColumn>
+               <TableHeaderColumn dataField='target'
+               >
+                 Value
+               </TableHeaderColumn>
+             </BootstrapTable>
+           </div>
         </div>
       )
     }

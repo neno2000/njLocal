@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "run": "node ./bin/www"
   },
   "dependencies": {
     "config": "^3.0.0",
@@ -15,5 +16,9 @@
     "nodemon": "^1.18.7",
     "request": "^2.88.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-run": "^1.7.1",
+    "gulp-shell": "^0.6.5"
+  }
 }
