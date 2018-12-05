@@ -1,14 +1,12 @@
-var express = require('express');
 var request = require('request');
-var router = express.Router();
 
 var util = {
     getRequest: function (req, servicename, method, res, reqObj) {
         const url = servicename;
         if (servicename.indexOf("?") > 0) {
             servicename = servicename.split("?")[0];
-        } 
-        
+        }
+
         const host = req.tServices[servicename].host;
         const portType = req.tServices[servicename].port;
 
@@ -27,29 +25,29 @@ var util = {
         } else {
             auth = req.headers.authorization;
         }
-        const options = { 
+        const options = {
             url: serviceurl,
             method: method,
             cache: false,
-            data : reqObj,
-            contentType: "application/json; charset=utf-8", 
+            data: reqObj,
+            contentType: "application/json; charset=utf-8",
             headers: {
                 authorization: auth
             }
         }
         const scb = function (error, response, body) {
             if (!error) {
-               // console.log(response.body);
+                // console.log(response.body);
                 let payload;
                 try {
                     payload = JSON.parse(response.body);
                 } catch (e) {
                     payload = response.body;
                     console.log(e);
-                } 
+                }
                 res.send(payload);
             }
-             else {
+            else {
                 console.log(response.body);
                 res.send(error);
             }

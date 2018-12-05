@@ -30,38 +30,38 @@ var app = express();
 //Read configuration files and pass to the the request object
 app.use(cookieParser()); // needed to call services from ABAP
 
-var conf = function(req, res, next) {
-  if (config.util.getEnv('NODE_ENV') === 'bcr') {
-    req.tServer = config.get("conf").bcr;
+var conf = function (req, res, next) {
+    if (config.util.getEnv('NODE_ENV') === 'bcr') {
+        req.tServer = config.get("conf").bcr;
+        console.log("bcr_config");
+    } else if (config.util.getEnv('NODE_ENV') === 'dcr') {
+        req.tServer = config.get("conf").dcr;
+    } else if (config.util.getEnv('NODE_ENV') === 'scr') {
 
-  } else if (config.util.getEnv('NODE_ENV') === 'dcr') {
-    req.tServer = config.get("conf").dcr;
-  } else if (config.util.getEnv('NODE_ENV') === 'scr') {
-
-    req.tServer = config.get("conf").scr;
-  }
-  // check if ABAP or Portal endpoint and assign function
-
-  try {
-    console.log(config.get("conf").resourcesLookup[req.url].host);
-
-    if (config.get("conf").resourcesLookup[req.url].host === "abapHost") {
-      req.lUtility = laUtility;
-    } else if (config.get("conf").resourcesLookup[req.url].host === "portHost") {
-      req.lUtility = lUtility;
-    } else {
-      // metadata service call
+        req.tServer = config.get("conf").scr;
     }
-    req.tServices = config.get("conf").resourcesLookup;
+    // check if ABAP or Portal endpoint and assign function
 
-  } catch (e) {
-    req.tServices = config.get("conf").resourcesLookup;
-    console.log("metadata call");
+    try {
+        console.log(config.get("conf").resourcesLookup[req._parsedUrl.pathname].host);
 
-  } finally {
+        if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "abapHost") {
+            req.lUtility = laUtility;
+        } else if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "portHost") {
+            req.lUtility = lUtility;
+        } else {
+            // metadata service call
+        }
+        req.tServices = config.get("conf").resourcesLookup;
 
-  }
-  next();
+    } catch (e) {
+        req.tServices = config.get("conf").resourcesLookup;
+        console.log("metadata call");
+
+    } finally {
+
+    }
+    next();
 
 }
 //serve static resources, react code will be here
@@ -69,7 +69,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: false
+    extended: false
 }));
 
 //remove public as client folder is mount and the guid
@@ -85,9 +85,9 @@ app.use('/foretag/adminkort', abapRouter);
 app.use('/foretag/adminkort/personkort', abapRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', javaRouter);
 app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', javaRouter);
-app.use('/foretag/hamtaguidenJSON.json', hamtaGuiden);
-app.use('/foretag/hamtakalenderitp1JSON.json', hamtakalenderitp1);
-app.use('/foretag/hamtakalenderitp2JSON.json', hamtakalenderitp2);
+app.use('/foretag/hamtaguidenJSON.json', javaRouter);
+app.use('/foretag/hamtakalenderitp1JSON.json', javaRouter);
+app.use('/foretag/hamtakalenderitp2JSON.json', javaRouter);
 app.use('/foretag/hamtapuffarJSON.json', hamtapuffar);
 
 module.exports = app;
