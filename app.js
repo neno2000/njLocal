@@ -7,11 +7,6 @@ var logger = require('morgan');
 //Application routing ind is not used!!
 var indexRouter = require('./routes/index');
 var abapRouter = require('./routes/abapRouter');
-
-//var adminkortRouter = require('./routes/adminkort');
-//var personkortRouter = require('./routes/personkort');
-//var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
-
 var javaRouter = require('./routes/javaRouter');
 var metadataRouter = require('./routes/metadataRouter');
 
@@ -43,6 +38,7 @@ var conf = function (req, res, next) {
             req.lUtility = laUtility;
         } else if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "portHost") {
             req.lUtility = lUtility;
+            req["serviceMethod"] = config.get("conf").resourcesLookup[req._parsedUrl.pathname].method;
         } else {
             // metadata service call
         }
@@ -83,5 +79,6 @@ app.use('/foretag/hamtaguidenJSON.json', javaRouter);
 app.use('/foretag/hamtakalenderitp1JSON.json', javaRouter);
 app.use('/foretag/hamtakalenderitp2JSON.json', javaRouter);
 app.use('/foretag/hamtapuffarJSON.json', javaRouter);
+app.use('/foretag/anstalldakort/hamtaAktivaAnstalldaLoneandringJSON.json', javaRouter);
 
 module.exports = app;
