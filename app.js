@@ -32,13 +32,13 @@ var conf = function (req, res, next) {
     // check if ABAP or Portal endpoint and assign function
 
     try {
-        console.log(config.get("conf").resourcesLookup[req._parsedUrl.pathname].host);
-
+        console.log(req.body);
+        console.log("Path: "+ req._parsedUrl.pathname);
         if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "abapHost") {
             req.lUtility = laUtility;
         } else if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "portHost") {
             req.lUtility = lUtility;
-            req["serviceMethod"] = config.get("conf").resourcesLookup[req._parsedUrl.pathname].method;
+            req.serviceMethod = config.get("conf").resourcesLookup[req._parsedUrl.pathname].method;
         } else {
             // metadata service call
         }
@@ -80,5 +80,6 @@ app.use('/foretag/hamtakalenderitp1JSON.json', javaRouter);
 app.use('/foretag/hamtakalenderitp2JSON.json', javaRouter);
 app.use('/foretag/hamtapuffarJSON.json', javaRouter);
 app.use('/foretag/anstalldakort/hamtaAktivaAnstalldaLoneandringJSON.json', javaRouter);
+app.use('/foretag/anstalldakort/valideraBulkLoneandringITP1JSON.json', javaRouter);
 
 module.exports = app;

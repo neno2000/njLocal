@@ -1,7 +1,7 @@
 var request = require('request');
 
 var util = {
-    getRequest: function (req, servicename, method, res, reqObj) {
+    getRequest: function (req, servicename, method, res) {
         const url = servicename;
         if (servicename.indexOf("?") > 0) {
             servicename = servicename.split("?")[0];
@@ -29,7 +29,7 @@ var util = {
             url: serviceurl,
             method: method,
             cache: false,
-            data: reqObj,
+            data: req.body,
             contentType: "application/json; charset=utf-8",
             headers: {
                 authorization: auth
