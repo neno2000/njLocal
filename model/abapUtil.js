@@ -58,20 +58,26 @@ var util = {
           console.log("A POST request CSRF token will be requested");  //PUT must be handled
           options.method = "GET";
           //get the CSRF session id
-          options.headers['x-csrf-Token'] = "Fetch";
+          options.headers['x-csrf-token'] = "Fetch";
           console.log("Calling: " + options.url + " to get a CSRF token");
           request(options, function(error, response, body) {
             if (!error) {
+
             //  options.method = method;   // change to the original method
-              options.headers['x-csrf-Token'] = response.headers['x-csrf-token'];
+              options.headers['x-csrf-token'] =  response.headers['x-csrf-token'];
+        //      options.headers['cache-control'] = 'no-cache';
+          //    options.headers['X-Requested-With'] = 'X';
               options.method = method;
               console.log("csrf-token: " + response.headers['x-csrf-token']);
               // make the last call to the abap server now with POST method
               // first place the CSRF token in the request make the call
               console.log("Calling: " + options.url + " with requested " + options.method );
+              console.log(options);
               request(options, scb);
-            } else {
-              res.send(error);
+            }  else {
+                console.log(error);
+                res.send(error);
+
             }
           })
 

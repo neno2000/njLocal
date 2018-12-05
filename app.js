@@ -4,6 +4,8 @@ var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+
 //Application routing ind is not used!!
 var indexRouter = require('./routes/index');
 var abapRouter = require('./routes/abapRouter');
@@ -18,6 +20,7 @@ var laUtility = require('./model/abapUtil');
 var app = express();
 //Read configuration files and pass to the the request object
 app.use(cookieParser()); // needed to call services from ABAP
+
 
 var conf = function (req, res, next) {
     if (config.util.getEnv('NODE_ENV') === 'bcr') {
