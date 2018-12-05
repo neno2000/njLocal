@@ -13,12 +13,6 @@ var abapRouter = require('./routes/abapRouter');
 //var hamtaOppnaFelRouter = require('./routes/hamtaOppnaFel');
 
 var javaRouter = require('./routes/javaRouter');
-
-var hamtaAdministratorer = require('./routes/hamtaAdministratorer');
-var hamtaGuiden = require('./routes/hamtaguiden');
-var hamtakalenderitp1 = require('./routes/hamtakalenderitp1JSON');
-var hamtakalenderitp2 = require('./routes/hamtakalenderitp2JSON');
-var hamtapuffar = require('./routes/hamtapuffarJSON');
 var metadataRouter = require('./routes/metadataRouter');
 
 //utility file where customs class and function are located
@@ -88,6 +82,6 @@ app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', javaRouter);
 app.use('/foretag/hamtaguidenJSON.json', javaRouter);
 app.use('/foretag/hamtakalenderitp1JSON.json', javaRouter);
 app.use('/foretag/hamtakalenderitp2JSON.json', javaRouter);
-app.use('/foretag/hamtapuffarJSON.json', hamtapuffar);
+app.use('/foretag/hamtapuffarJSON.json', javaRouter);
 
 module.exports = app;
