@@ -31,6 +31,8 @@ var app = express();
 app.use(cookieParser()); // needed to call services from ABAP
 
 var conf = function(req, res, next) {
+  // remove url params and add to the request object
+  console.log(req._parsedUrl.pathname);
   if (config.util.getEnv('NODE_ENV') === 'bcr') {
     req.tServer = config.get("conf").bcr;
 
@@ -43,9 +45,9 @@ var conf = function(req, res, next) {
   // check if ABAP or Portal endpoint and assign function
 
   try {
-    console.log(config.get("conf").resourcesLookup[req.url].host);
+    console.log(config.get("conf").resourcesLookup[req._parsedUrl.pathname].host);
 
-    if (config.get("conf").resourcesLookup[req.url].host === "abapHost") {
+    if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "abapHost") {
       req.lUtility = laUtility;
     } else if (config.get("conf").resourcesLookup[req.url].host === "portHost") {
       req.lUtility = lUtility;
@@ -55,8 +57,10 @@ var conf = function(req, res, next) {
     req.tServices = config.get("conf").resourcesLookup;
 
   } catch (e) {
+    // router for
     req.tServices = config.get("conf").resourcesLookup;
-    console.log("metadata call");
+    //redirect to metadata service or a home page indicating the issue
+    console.log("resource does not exist");
 
   } finally {
 
@@ -81,8 +85,8 @@ app.use('/', indexRouter);
 
 //Services ====>
 app.use('/metadata/services', metadataRouter);
-app.use('/foretag/adminkort', abapRouter);
-app.use('/foretag/adminkort/personkort', abapRouter);
+app.use('/sap/bc/collectum/rest/foretag/adminkort', abapRouter);
+app.use('/sap/bc/collectum/rest/foretag/adminkort/personkort', abapRouter);
 app.use('/foretag/fil/hamtaOppnaFelJSON.json', javaRouter);
 app.use('/foretag/adminkort/hamtaAdministratorerJSON.json', javaRouter);
 app.use('/foretag/hamtaguidenJSON.json', hamtaGuiden);
