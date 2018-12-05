@@ -1,16 +1,5 @@
 var express = require('express');
 var request = require('request');
-var router = express.Router();
-
-/* GET request. */
-//router.get('/', function (req, res, next) {
-//    console.log(req.lUtili);
-//    // get the logon user from the request
-//    res.send(req.tServices);
-
-//});
-
-
 
 var util = {
   getRequest: function(req, service, method, res) {
