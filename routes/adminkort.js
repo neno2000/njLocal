@@ -10,12 +10,9 @@ router.get('/',
         let result = function(response) {
             resultbody = response;
         }
-        console.log(req);
         // keep this part as it is
-        // if GET retrieve a portal cookie object
-        // if POST retrieve an abap session object
+        // GET retrieve a portal cookie object
         req.lUtility.getRequest(req, req.originalUrl, "GET", res);
-
     });
 
 module.exports = router;

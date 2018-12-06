@@ -12,6 +12,9 @@ router.post('/',
         console.log("This is a POST");
         console.log(req.body);
       //  req.lUtility.getRequest(req, req.originalUrl, req.serviceMethod, res);
+      console.log("a post");
+      console.log(req);
+      req.lUtility.getRequest(req, req.originalUrl, req.serviceMethod, res);
     });
 
-module.exports = router; 
+module.exports = router;
