@@ -21,6 +21,7 @@ router.post('/',
     let result = function(response) {
       resultbody = response;
     }
+
     req.lUtility.getRequest(req, req.baseUrl, "POST", res);
 
   });
@@ -31,6 +32,7 @@ router.put('/',
     let result = function(response) {
       resultbody = response;
     }
+
     req.lUtility.getRequest(req, req.baseUrl, "PUT", res);
 
   });

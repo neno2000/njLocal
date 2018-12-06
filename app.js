@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
+
 //Application routing ind is not used!!
 var indexRouter = require('./routes/index');
 var abapRouter = require('./routes/abapRouter');
@@ -34,8 +35,7 @@ var conf = function (req, res, next) {
     // check if ABAP or Portal endpoint and assign function
 
     try {
-        console.log(req.body);
-        console.log("Path: "+ req._parsedUrl.pathname);
+
         if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "abapHost") {
             req.lUtility = laUtility;
         } else if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "portHost") {

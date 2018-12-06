@@ -1,6 +1,5 @@
 set arg1=%1
-set NODE_ENV=dcr
-
+set NODE_ENV=scr
 
 start npm start
 cd client

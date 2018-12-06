@@ -4,15 +4,10 @@ var request = require('request');
 var util = {
   getRequest: function(req, service, method, res) {
     // get the session cookie
-
-    console.log("I am here Now in ABAP");
-    console.log(service);
     const host = req.tServices[service].host;
     const portType = req.tServices[service].port;
-
     const authUrl = req.tServer.server.portHost + ":" +
       req.tServer.server.portPort + req.tServer.server.portAuth;
-
     const baseurl = req.tServer.server[host];
     const port = req.tServer.server[portType];
 
@@ -26,6 +21,7 @@ var util = {
     } else {
       auth = req.headers.authorization;
     }
+    // will be used to make the request, passing all information from njLocal
     var options = {
       url: serviceurl,
       method: method,
@@ -34,11 +30,11 @@ var util = {
       headers: {
         authorization: auth
       },
-      qs: req.query
-
+      qs: req.query,
+      body: req.body,
+      json: true
     }
-
-
+    //use to get the single sign on login.
     const options_auth = {
       url: authUrl,
       method: "POST",
@@ -53,37 +49,7 @@ var util = {
     var scb_auth = function(error, response, body) {
       if (!error) {
         options.headers.cookie = response.headers['set-cookie']
-        if (options.method !== "GET") {
-          // get the session id to overcome ABAP CSRF restriction
-          console.log("A POST request CSRF token will be requested");  //PUT must be handled
-          options.method = "GET";
-          //get the CSRF session id
-          options.headers['x-csrf-token'] = "Fetch";
-          console.log("Calling: " + options.url + " to get a CSRF token");
-          request(options, function(error, response, body) {
-            if (!error) {
-
-            //  options.method = method;   // change to the original method
-              options.headers['x-csrf-token'] =  response.headers['x-csrf-token'];
-        //      options.headers['cache-control'] = 'no-cache';
-          //    options.headers['X-Requested-With'] = 'X';
-              options.method = method;
-              console.log("csrf-token: " + response.headers['x-csrf-token']);
-              // make the last call to the abap server now with POST method
-              // first place the CSRF token in the request make the call
-              console.log("Calling: " + options.url + " with requested " + options.method );
-              console.log(options);
-              request(options, scb);
-            }  else {
-                console.log(error);
-                res.send(error);
-
-            }
-          })
-
-        } else if (options.method === "GET") {
-          request(options, scb);
-        }
+        request(options, scb);
       } else {
         res.send(error);
       }
@@ -93,12 +59,18 @@ var util = {
         // make the call
         res.send(response.body);
       } else {
-        res.send("I am here fan!");
         res.send(error);
       }
     }
+    // check if the target system is CRM sandbox, then SSO is not activated.
+    // in that case use authentication options from the request
+    if (req.tServer.portHost === 'none') { // will work even for other systems
+      // than SCR as long as conf is correct
+      request(options, scb);
 
-    request(options_auth, scb_auth);
+    } else {
+      request(options_auth, scb_auth);
+    }
   }
 }
 
