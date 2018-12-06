@@ -34,6 +34,7 @@ var util = {
       body: req.body,
       json: true
     }
+    console.log(options);
     //use to get the single sign on login.
     const options_auth = {
       url: authUrl,
