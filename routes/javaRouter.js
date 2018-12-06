@@ -11,7 +11,8 @@ router.post('/',
     function (req, res, next) {
         console.log("This is a POST");
         console.log(req.body);
-      //  req.lUtility.getRequest(req, req.originalUrl, req.serviceMethod, res);
+        req.lUtility.getRequest(req, req.originalUrl, req.serviceMethod, res);
+       
     });
 
 module.exports = router; 

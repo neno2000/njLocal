@@ -16,7 +16,7 @@ var util = {
 
         let password, username, auth, serviceurl = baseurl + ":" + port + url;
 
-        console.log("Url: " + serviceurl);
+        //console.log(req.headers.cookie);
 
         if (!req.headers.authorization) {
             username = req.tServer.server.debugUser;
@@ -25,6 +25,7 @@ var util = {
         } else {
             auth = req.headers.authorization;
         }
+
         const options = {
             url: serviceurl,
             method: method,
@@ -35,6 +36,7 @@ var util = {
                 authorization: auth
             }
         }
+        console.log(options);
         const scb = function (error, response, body) {
             if (!error) {
                 // console.log(response.body);
@@ -45,12 +47,47 @@ var util = {
                     payload = response.body;
                     console.log(e);
                 }
+                console.log(response.headers["set-cookie"]);
                 res.send(payload);
             }
             else {
                 console.log(response.body);
                 res.send(error);
             }
+        }
+        if (method === "POST") {
+            const ccb = function (cook) {
+                console.log(cook.toString());
+                request.cookie(cook.toString());
+                request(options, scb);
+            }
+            this.getCookie(baseurl + ":" + port + "/foretag/fil/hamtaOppnaFelJSON.json", auth, ccb);
+        } else {
+            request(options, scb);
+        }
+    },
+    getCookie: function (url, auth, ccb) {
+        console.log("getCookie-method");
+        let cookie = "";
+        const options = {
+            url: url,
+            method: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            headers: {
+                authorization: auth
+            }
+        }
+        const scb = function (error, response) {
+            if (!error) {
+                cookie = response.headers["set-cookie"];
+                console.log("cookie set: " + cookie);
+                ccb(cookie);
+            }
+            else {
+                console.log(error);
+            }
+            return cookie;
         }
         request(options, scb);
     }
