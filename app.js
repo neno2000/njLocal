@@ -41,7 +41,7 @@ var conf = function (req, res, next) {
             req.lUtility = laUtility;
         } else if (config.get("conf").resourcesLookup[req._parsedUrl.pathname].host === "portHost") {
             req.lUtility = lUtility;
-            req.serviceMethod = config.get("conf").resourcesLookup[req._parsedUrl.pathname].method;
+          //  req.serviceMethod = config.get("conf").resourcesLookup[req._parsedUrl.pathname].method;
         } else {
             // metadata service call
         }
