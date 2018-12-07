@@ -15,7 +15,7 @@
 
 # production
 /build
-
+app.js
 # misc
 .DS_Store
 .env.local
