@@ -12,6 +12,13 @@ class Servdetail extends Component {
     this.state.data = {
       data: props.location.pathname
     }
+    this.state.params = {
+      params : {}
+    }
+
+    this.state.inbound = {
+      inbound : {}
+    }
   }
   // Fetch the list on first mount
   componentDidMount() {
@@ -23,12 +30,20 @@ class Servdetail extends Component {
   //  console.log(this.targService);
     fetch(this.targService)
     .then(res => res.json())
-    .then(service => this.setState({ service }))
+    .then(service => this.setState({ service}))
   }
   render() {
       const { service } = this.state;
       const { data } = this.state.data;
-      console.log( data );
+      const { params } = this.state.params.inbound;
+  //    const { inbound } = this.state.params.inbound;
+      console.log( "Ernesto" );
+      console.log( service );
+      var lin = [];
+      for (var x in params){
+        console.log(x);
+        lin.push(x);
+      }
       return (
         <div>
            <title>bla bla</title>
@@ -37,22 +52,7 @@ class Servdetail extends Component {
            <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
            <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
            <div>
-             <BootstrapTable data={data.params}
-                             selectRow={selectRowProp}
-             >
-               <TableHeaderColumn isKey dataField='key'
-               >
-                 key
-               </TableHeaderColumn>
-               <TableHeaderColumn dataField='name'
-               >
-                 Name
-               </TableHeaderColumn>
-               <TableHeaderColumn dataField='target'
-               >
-                 Value
-               </TableHeaderColumn>
-             </BootstrapTable>
+
            </div>
         </div>
       )

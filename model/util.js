@@ -71,15 +71,14 @@ var util = {
             res.send(error);
           }
         }
-        // check if the target system is CRM sandbox, then SSO is not activated.
-        // in that case use authentication options from the request
-        if (options.method === "GET") { // will work even for other systems
-          // than SCR as long as conf is correct
+        // check if the method is POST or GET as csrf  must be handled
+        if (options.method === "GET") { // no cookie is needed as csrf is not triggered on Spring
+
           request(options, scb);
 
         } else {
-          request(options_auth, scb_auth);
-          console.log(options_auth);
+          request(options_auth, scb_auth);  // session must be establish to authenticate the
+          console.log(options_auth);        // subsequent request as csrf is activated on server mutations
         }
       }
     }
