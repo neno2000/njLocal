@@ -19,11 +19,14 @@ class Servdetail extends Component {
     this.state.inbound = {
       inbound : {}
     }
+
+
   }
   // Fetch the list on first mount
   componentDidMount() {
     this.getService();
   }
+
 
   // Retrieves the list of items from the Express app
   getService = () => {
@@ -35,15 +38,15 @@ class Servdetail extends Component {
   render() {
       const { service } = this.state;
       const { data } = this.state.data;
-      const { params } = this.state.params.inbound;
-  //    const { inbound } = this.state.params.inbound;
       console.log( "Ernesto" );
-      console.log( service );
+      console.log(service);
       var lin = [];
-      for (var x in params){
+      for (var x in this.state.params){
         console.log(x);
         lin.push(x);
       }
+      console.log("fadsfa");
+      console.log(lin);
       return (
         <div>
            <title>bla bla</title>
@@ -52,11 +55,13 @@ class Servdetail extends Component {
            <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
            <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
            <div>
-
+           {
+             Object.keys(lin).map(function(key) {
+               return <li className="list-group-item list-group-item-info">{lin[key]}</li>})
+           }
            </div>
         </div>
       )
     }
 }
-
 export default Servdetail;
