@@ -3,7 +3,7 @@ var request = require('request');
 
 var util = {
   getRequest: function(req, service, method, res) {
-    logger.log('info', 'test message %s', 'my string');
+
     // get the session cookie
     const host = req.tServices[service].host;
     const portType = req.tServices[service].port;
