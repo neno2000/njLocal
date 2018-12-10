@@ -14,11 +14,10 @@ var util = {
 
         const baseurl = req.tServer.server[host];
         const port = req.tServer.server[portType];
-        console.log(port);
 
         let password, username, auth, serviceurl = baseurl + ":" + port + url;
 
-        //console.log(req.headers.cookie);
+
 
         if (!req.headers.authorization) {
             username = req.tServer.server.debugUser;
@@ -57,7 +56,6 @@ var util = {
         var scb_auth = function(error, response, body) {
           if (!error) {
             options.headers.cookie = response.headers['set-cookie']
-            console.log(options);
             request(options, scb);
           } else {
             res.send(error);
@@ -78,7 +76,6 @@ var util = {
 
         } else {
           request(options_auth, scb_auth);  // session must be establish to authenticate the
-          console.log(options_auth);        // subsequent request as csrf is activated on server mutations
         }
       }
     }

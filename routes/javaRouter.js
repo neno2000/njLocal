@@ -7,10 +7,6 @@ var router = express.Router();
     router.get('/',
       function(req, res, next) {
 
-      //  let resultbody = {};
-      //  let result = function(response) {
-      //    resultbody = response;
-      //  }
           req.lUtility.getRequest(req, req.originalUrl, "GET", res);
 
       });
@@ -18,12 +14,8 @@ var router = express.Router();
 
     router.post('/',
       function(req, res, next) {
-        console.log(req);
 
-      //  let resultbody = {};
-      //  let result = function(response) {
-      //    resultbody = response;
-      //  }
+
 
         req.lUtility.getRequest(req, req.originalUrl, "POST", res);
 
