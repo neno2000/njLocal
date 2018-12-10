@@ -34,8 +34,7 @@ var util = {
       body: req.body,
       json: true
     }
-    console.log(options);
-    //use to get the single sign on login.
+   //use to get the single sign on login.
     const options_auth = {
       url: authUrl,
       method: "POST",
@@ -49,7 +48,7 @@ var util = {
 
     var scb_auth = function(error, response, body) {
       if (!error) {
-        options.headers.cookie = response.headers['set-cookie']
+          options.headers.cookie = response.headers['set-cookie'];
         request(options, scb);
       } else {
         res.send(error);

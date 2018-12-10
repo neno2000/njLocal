@@ -54,15 +54,6 @@ var util = {
           qs: req.query
         }
 
-        var scb_auth = function(error, response, body) {
-          if (!error) {
-            options.headers.cookie = response.headers['set-cookie']
-            console.log(options);
-            request(options, scb);
-          } else {
-            res.send(error);
-          }
-        }
         const scb = function(error, response, body) {
           if (!error) {
             // make the call
@@ -70,6 +61,16 @@ var util = {
           } else {
             res.send(error);
           }
+        }
+
+        var scb_auth = function (error, response, body) {
+            if (!error) {
+                options.headers.cookie = response.headers['set-cookie'];
+                console.log(options.headers.cookie);
+                request(options, scb);
+            } else {
+                res.send(error);
+            }
         }
         // check if the target system is CRM sandbox, then SSO is not activated.
         // in that case use authentication options from the request
