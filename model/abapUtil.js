@@ -3,6 +3,7 @@ var request = require('request');
 
 var util = {
   getRequest: function(req, service, method, res) {
+
     // get the session cookie
     const host = req.tServices[service].host;
     const portType = req.tServices[service].port;
@@ -34,7 +35,8 @@ var util = {
       body: req.body,
       json: true
     }
-   //use to get the single sign on login.
+
+    //use to get the single sign on login.
     const options_auth = {
       url: authUrl,
       method: "POST",
@@ -48,7 +50,7 @@ var util = {
 
     var scb_auth = function(error, response, body) {
       if (!error) {
-          options.headers.cookie = response.headers['set-cookie'];
+        options.headers.cookie = response.headers['set-cookie']
         request(options, scb);
       } else {
         res.send(error);

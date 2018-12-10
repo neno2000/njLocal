@@ -14,11 +14,10 @@ var util = {
 
         const baseurl = req.tServer.server[host];
         const port = req.tServer.server[portType];
-        console.log(port);
 
         let password, username, auth, serviceurl = baseurl + ":" + port + url;
 
-        //console.log(req.headers.cookie);
+
 
         if (!req.headers.authorization) {
             username = req.tServer.server.debugUser;
@@ -54,6 +53,14 @@ var util = {
           qs: req.query
         }
 
+        var scb_auth = function(error, response, body) {
+          if (!error) {
+            options.headers.cookie = response.headers['set-cookie']
+            request(options, scb);
+          } else {
+            res.send(error);
+          }
+        }
         const scb = function(error, response, body) {
           if (!error) {
             // make the call
@@ -62,25 +69,13 @@ var util = {
             res.send(error);
           }
         }
+        // check if the method is POST or GET as csrf  must be handled
+        if (options.method === "GET") { // no cookie is needed as csrf is not triggered on Spring
 
-        var scb_auth = function (error, response, body) {
-            if (!error) {
-                options.headers.cookie = response.headers['set-cookie'];
-                console.log(options.headers.cookie);
-                request(options, scb);
-            } else {
-                res.send(error);
-            }
-        }
-        // check if the target system is CRM sandbox, then SSO is not activated.
-        // in that case use authentication options from the request
-        if (options.method === "GET") { // will work even for other systems
-          // than SCR as long as conf is correct
           request(options, scb);
 
         } else {
-          request(options_auth, scb_auth);
-          console.log(options_auth);
+          request(options_auth, scb_auth);  // session must be establish to authenticate the
         }
       }
     }

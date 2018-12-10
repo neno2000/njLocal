@@ -6,21 +6,15 @@ var router = express.Router();
 router.get('/',
   function(req, res, next) {
 
-    let resultbody = {};
-    let result = function(response) {
-      resultbody = response;
-    }
+
     req.lUtility.getRequest(req, req.baseUrl, "GET", res);
 
   });
 
 router.post('/',
   function(req, res, next) {
-      console.log("abapPost");
-    let resultbody = {};
-    let result = function(response) {
-      resultbody = response;
-    }
+
+
 
     req.lUtility.getRequest(req, req.baseUrl, "POST", res);
 
@@ -28,10 +22,6 @@ router.post('/',
 router.put('/',
   function(req, res, next) {
 
-    let resultbody = {};
-    let result = function(response) {
-      resultbody = response;
-    }
 
     req.lUtility.getRequest(req, req.baseUrl, "PUT", res);
 
