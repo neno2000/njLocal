@@ -11,3 +11,4 @@
 {"message":"::1 - - [10/Dec/2018:13:07:27 +0000] \"POST /sap/bc/collectum/rest/foretag/adminkort?anvandare=196703033289&foretag=107465,205207&sap-client=100&sap-language=sv HTTP/1.1\" 500 1366 \"-\" \"PostmanRuntime/7.4.0\"\n","level":"info"}
 {"message":"::1 - - [10/Dec/2018:13:07:44 +0000] \"POST /sap/bc/collectum/rest/foretag/adminkort?anvandare=196703033289&foretag=107465,205207&sap-client=100&sap-language=sv HTTP/1.1\" 500 1366 \"-\" \"PostmanRuntime/7.4.0\"\n","level":"info"}
 {"message":"::1 - - [10/Dec/2018:13:08:04 +0000] \"POST /sap/bc/collectum/rest/foretag/adminkort?anvandare=196703033289&foretag=107465,205207&sap-client=100&sap-language=sv HTTP/1.1\" 500 1366 \"-\" \"PostmanRuntime/7.4.0\"\n","level":"info"}
+{"message":"::1 - - [10/Dec/2018:13:16:11 +0000] \"POST /sap/bc/collectum/rest/foretag/adminkort?anvandare=196703033289&foretag=107465,205207&sap-client=100&sap-language=sv HTTP/1.1\" 500 1366 \"-\" \"PostmanRuntime/7.4.0\"\n","level":"info"}
