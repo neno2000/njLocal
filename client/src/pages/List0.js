@@ -9,8 +9,7 @@ function onSelectRow(row, isSelected, e) {
     var key = row.name;
 
   //  e.history.push(`/target`)
-    alert(`You just selected '${row['name']}'`)
-
+      alert(`You just selected '${row['name']}'`);
 
   }
 }
@@ -41,9 +40,9 @@ class List extends Component {
 
   // Retrieves the list of items from the Express app
   getList = () => {
-    fetch('/metadata/services')
-    .then(res => res.json())
-    .then(list => this.setState({ list }))
+      fetch('/metadata/services')
+          .then(res => res.json())
+          .then(list => this.setState({ list }));
   }
 
   render() {

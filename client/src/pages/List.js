@@ -21,9 +21,9 @@ class List extends Component {
 
   // Retrieves the list of items from the Express app
   getList = () => {
-    fetch('/metadata/services')
-    .then(res => res.json())
-    .then(list => this.setState({ list }))
+      fetch('/metadata/services')
+          .then(res => res.json())
+          .then(list => this.setState({ list }));
   }
 
   render() {
@@ -35,7 +35,6 @@ class List extends Component {
     }
 
     return (
-
       <div>
         <h2>Available Services</h2>
         <nav className="navbar navbar-light">

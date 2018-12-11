@@ -9,7 +9,7 @@
 /config
 /.pnp
 .pnp.js
-
+/.vs
 # testing
 /coverage
 
