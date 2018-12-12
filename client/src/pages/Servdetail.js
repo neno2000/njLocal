@@ -23,11 +23,10 @@ class Servdetail extends Component {
   // Retrieves the list of items from the Express app
   getService = () => {
   //  console.log(this.targService);
-    fetch(this.targService)
-    .then(res => res.json())
-    .then(service => this.setState({ service, isLoading: false }))
+      fetch(this.targService)
+          .then(res => res.json())
+          .then(service => this.setState({ service, isLoading: false }));
   }
-
 
   render() {
       const { service } = this.state;

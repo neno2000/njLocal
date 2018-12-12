@@ -11,6 +11,9 @@
 /logs
 .pnp.js
 /.vs
+/nodeJSmaster.sln
+/nodeJSmaster.njsproj
+/bin
 # testing
 /coverage
 
