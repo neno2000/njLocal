@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import Servdetail from './Servdetail';
 
-
-
-
 /* App component */
 class List extends Component {
   constructor(props){
@@ -21,36 +18,38 @@ class List extends Component {
 
   // Retrieves the list of items from the Express app
   getList = () => {
-    fetch('/metadata/services')
-    .then(res => res.json())
-    .then(list => this.setState({ list }))
+      fetch('/metadata/services')
+          .then(res => res.json())
+          .then(list => this.setState({ list }));
   }
 
   render() {
     const { list } = this.state;
     console.log(list);
     var lin = [];
-    for (var x in list){
-      console.log(x);
-      lin.push(x);
-    }
+    for (var x in list) {
+          if (list.hasOwnProperty(x)) {
+              console.log(x);
+              lin.push(x);
+          }
+      }
 
-    return (
-
-      <div>
+      return (
+          <div>
         <h2>Available Services</h2>
         <nav className="navbar navbar-light">
           <ul className="nav navbar-nav">
             {
-              Object.keys(lin).map(function(key) {
-                return <li className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]}</Link></li>
-              })
+                Object.keys(lin).map(function(key, index) {
+                              return <li key={index} className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]
+                    }</Link></li>;
+                })
             }
           </ul>
          </nav>
          <Route path="/:servicedetail" component={Servdetail}/>
       </div>
-    )
+      );
   }
 }
 export default List;

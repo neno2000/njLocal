@@ -3,6 +3,7 @@ var request = require('request');
 
 var util = {
   getRequest: function(req, service, method, res) {
+
     // get the session cookie
     const host = req.tServices[service].host;
     const portType = req.tServices[service].port;
@@ -34,7 +35,7 @@ var util = {
       body: req.body,
       json: true
     }
-    console.log(options);
+
     //use to get the single sign on login.
     const options_auth = {
       url: authUrl,
@@ -65,11 +66,16 @@ var util = {
     }
     // check if the target system is CRM sandbox, then SSO is not activated.
     // in that case use authentication options from the request
-    if (req.tServer.portHost === 'none') { // will work even for other systems
+    console.log(req.tServer.server.portHost);
+    if (req.tServer.server.portHost === 'none') { // will work even for other systems
+
+      console.log("calling sandbox");
       // than SCR as long as conf is correct
+      console.log(options);
       request(options, scb);
 
     } else {
+      console.log("calling not sandbox wrong");
       request(options_auth, scb_auth);
     }
   }

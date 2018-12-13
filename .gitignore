@@ -8,8 +8,12 @@
 /client/src/index.css
 /config
 /.pnp
+/logs
 .pnp.js
-
+/.vs
+/nodeJSmaster.sln
+/nodeJSmaster.njsproj
+/bin
 # testing
 /coverage
 
