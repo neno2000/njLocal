@@ -39,8 +39,8 @@ class List extends Component {
         <nav className="navbar navbar-light">
           <ul className="nav navbar-nav">
             {
-                Object.keys(lin).map(function(key) {
-                    return <li className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]
+                Object.keys(lin).map(function(key, index) {
+                              return <li key={index} className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]
                     }</Link></li>;
                 })
             }
