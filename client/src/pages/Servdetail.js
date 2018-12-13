@@ -66,12 +66,6 @@ class Servdetail extends Component {
             .then(service => this.setState({ service, isLoading: false }));
     }
 
-    //renderRow = (item, i) => {
-    //    return (
-    //        <TableRow key={item.name + i + item.type} />
-    //    );
-    //}
-
     render() {
         const service = this.state.service;
         let parameters = "";
@@ -87,15 +81,7 @@ class Servdetail extends Component {
 
         }
         const { data } = this.state.data;
-        // this.state.params = service.params;
-
-        console.log(allParams);
-
-        // service.params.map(function (item, index) {
-        //     console.log("PArams " + item.params);
-        // });
-        const { inbound } = service;
-        //  console.log(inbound);
+      //  console.log(allParams);
 
         return (
             <div>
@@ -108,7 +94,6 @@ class Servdetail extends Component {
                 </ul>
                 <ParamTable paraMeters={allParams} />
             </div>
-
         );
     }
 }
