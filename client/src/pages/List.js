@@ -28,6 +28,7 @@ class List extends Component {
 
   render() {
     const { list } = this.state;
+    console.log(list);
     var lin = [];
     for (var x in list){
       console.log(x);
