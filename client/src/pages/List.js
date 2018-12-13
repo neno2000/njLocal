@@ -35,7 +35,7 @@ class List extends Component {
       }
 
       return (
-          <div>
+      <div>
         <h2>Available Services</h2>
         <nav className="navbar navbar-light">
           <ul className="nav navbar-nav">
