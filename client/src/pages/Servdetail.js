@@ -19,7 +19,7 @@ class ParamTable extends Component {
         );
         if (this.props.paraMeters.length) {
             console.log(this);
-            return (<table>
+            return (<table className="ik-tbl-default">
                 <thead>
                     <tr>
                         <td>Namn</td>
@@ -81,17 +81,25 @@ class Servdetail extends Component {
 
         }
         const { data } = this.state.data;
-      //  console.log(allParams);
+        //  console.log(allParams);
 
         return (
-            <div>
+            <div className="col-xs-12 col-xs-12 bottom-padding">
                 <title>bla bla</title>
-                <h1>Service Repository</h1>
-                <h2>Detaljerad beskrivning for tjänsten: {data}</h2>
-                <ul>
-                    <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
-                    <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
-                </ul>
+                <h3>Service Repository</h3>
+                <div className="">
+                    <h5>Detaljerad beskrivning av tjänsten</h5>
+                    <h4>{data}</h4>
+                </div>
+
+                <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
+                    <ul>
+                        <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
+                        <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
+                        <li className="list-group-item list-group-item-info">Metod: {service.method}</li>
+                    </ul>
+                </div>
+                <h4>Parametrar</h4>
                 <ParamTable paraMeters={allParams} />
             </div>
         );
