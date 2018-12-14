@@ -23,15 +23,16 @@ class List extends Component {
             .then(list => this.setState({ list }));
     }
 
-    render() {
-        const { list } = this.state;
-        var lin = [];
-        for (var x in list) {
-            if (list.hasOwnProperty(x)) {
-                console.log(x);
-                lin.push(x);
-            }
-        }
+  render() {
+    const { list } = this.state;
+    console.log(list);
+    var lin = [];
+    for (var x in list) {
+          if (list.hasOwnProperty(x)) {
+              console.log(x);
+              lin.push(x);
+          }
+      }
 
         return (
             <div className="col-xs-12">
