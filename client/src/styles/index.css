@@ -669,6 +669,13 @@ h4 {
     text-transform: uppercase;
 }
 
+.u-case {
+    text-transform: uppercase;
+}
+.f-bold {
+    font-weight: bold;
+}
+
 .it-und {
     font-style: italic;
     text-decoration: underline;
@@ -677,6 +684,13 @@ h4 {
 .guiden h1, .calendar .year-inspector p {
     font-weight: bold;
     color: #373737;
+}
+
+ul.list-inline {
+    list-style-type: none;
+}
+.list-inline li {
+    display: inline-block;
 }
 
 .ik-btn-default,

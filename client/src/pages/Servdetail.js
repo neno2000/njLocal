@@ -19,18 +19,21 @@ class ParamTable extends Component {
         );
         if (this.props.paraMeters.length) {
             console.log(this);
-            return (<table className="ik-tbl-default">
-                <thead>
-                    <tr>
-                        <td>Namn</td>
-                        <td>Typ</td>
-                        <td>Obligatorisk</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {listItems}
-                </tbody>
-            </table>
+            return (<div>
+                <h4>Parametrar</h4>
+                <table className="ik-tbl-default">
+                    <thead>
+                        <tr>
+                            <td>Namn</td>
+                            <td>Typ</td>
+                            <td>Obligatorisk</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listItems}
+                    </tbody>
+                </table>
+            </div>
             );
         } else {
             return ("");
@@ -81,26 +84,38 @@ class Servdetail extends Component {
 
         }
         const { data } = this.state.data;
-        //  console.log(allParams);
 
         return (
-            <div className="col-xs-12 col-xs-12 bottom-padding">
-                <title>bla bla</title>
-                <h3>Service Repository</h3>
-                <div className="">
-                    <h5>Detaljerad beskrivning av tjänsten</h5>
-                    <h4>{data}</h4>
-                </div>
-
-                <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
-                    <ul>
-                        <li className="list-group-item list-group-item-info">Funktionalitet: {service.description}</li>
-                        <li className="list-group-item list-group-item-info">Exekveringsserver: {service.host}</li>
-                        <li className="list-group-item list-group-item-info">Metod: {service.method}</li>
+            <div>
+                <div className="col-xs-12 top-padding u-case">
+                    <ul className="list-inline">
+                        <li>
+                            <span className="glyphicon glyphicon-chevron-left"></span>
+                        </li>
+                        <li>
+                            <a className="" href="/">Tillbaka</a>
+                        </li>
                     </ul>
+
                 </div>
-                <h4>Parametrar</h4>
-                <ParamTable paraMeters={allParams} />
+                <div className="col-xs-12 col-xs-12 bottom-padding">
+                    <title>bla bla</title>
+                    <h3>Service Repository</h3>
+                    <div className="top-padding">
+                        <p>Detaljerad beskrivning av tjänsten</p>
+                        <p className="u-case f-bold">{data}</p>
+                    </div>
+
+                    <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
+                        <ul className="col-xs-12 no-pad-lr">
+                            <li className="list-group-item">Funktionalitet: {service.description}</li>
+                            <li className="list-group-item">Exekveringsserver: {service.host}</li>
+                            <li className="list-group-item">Metod: {service.method}</li>
+                        </ul>
+                    </div>
+
+                    <ParamTable paraMeters={allParams} />
+                </div>
             </div>
         );
     }

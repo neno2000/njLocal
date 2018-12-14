@@ -33,14 +33,13 @@ class List extends Component {
               lin.push(x);
           }
       }
-
         return (
-            <div className="col-xs-12">
+            <div className="col-xs-12 top-padding">
                 <h3>Available Services</h3>
-                    <ul className="col-xs-12 no-pad-lr">
+                    <ul className="col-xs-12 top-padding no-pad-lr">
                         {
                             Object.keys(lin).map(function (key, index) {
-                                return <li key={index} className="list-group-item list-group-item-info"> <Link to={lin[key]}>{lin[key]
+                                return <li key={index} className="list-group-item"> <Link to={lin[key]}>{lin[key]
                                 }</Link></li>;
                             })
                         }
