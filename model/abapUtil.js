@@ -71,11 +71,10 @@ var util = {
 
       console.log("calling sandbox");
       // than SCR as long as conf is correct
-      console.log(options);
       request(options, scb);
 
     } else {
-      console.log("calling not sandbox wrong");
+      console.log("Calling non sandbox system");
       request(options_auth, scb_auth);
     }
   }

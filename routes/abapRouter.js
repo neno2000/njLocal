@@ -6,7 +6,6 @@ var router = express.Router();
 router.get('/',
   function(req, res, next) {
 
-
     req.lUtility.getRequest(req, req.baseUrl, "GET", res);
 
   });
@@ -14,14 +13,11 @@ router.get('/',
 router.post('/',
   function(req, res, next) {
 
-
-
     req.lUtility.getRequest(req, req.baseUrl, "POST", res);
 
   });
 router.put('/',
   function(req, res, next) {
-
 
     req.lUtility.getRequest(req, req.baseUrl, "PUT", res);
 
