@@ -46,7 +46,6 @@ class List extends Component {
           }
       }
         return (
-           <div>
             <div className="col-xs-12 top-padding">
                 <h3>Available Services</h3>
                     <ul className="col-xs-12 top-padding no-pad-lr">
@@ -57,16 +56,11 @@ class List extends Component {
                             })
                         }
                     </ul>
-
-            </div>
-            <div>
                 <footer>
-                <p><Link to='/jsonrfc'>toJson</Link></p>
-
+                    <p><Link to='/jsonrfc'>jsonRfcAdapter</Link></p>
                </footer>
-           </div>
-            <Route path="/service/:servicedetail" component={Servdetail} />
-            <Route path="/jsonrfc" component={RfcList} />
+            <Route path="/:servicedetail" component={Servdetail} />
+            <Route exact path="/jsonrfc" component={RfcList} />
            </div>
         );
     }
