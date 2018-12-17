@@ -1,15 +1,27 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
 import Servdetail from './Servdetail';
+import RfcList from './RfcList';
 
 /* App component */
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: []
+            list: [],
+            redirect: false
         }
+    }
+    setRedirect = () => {
+      this.setState({
+        redirect: true
+      })
+    }
+    renderRedirect = () => {
+      if (this.state.redirect) {
+        return <Redirect to='/jsonrfc' />
+      }
     }
     // Fetch the list on first mount
     componentDidMount() {
@@ -34,9 +46,9 @@ class List extends Component {
           }
       }
         return (
+           <div>
             <div className="col-xs-12 top-padding">
                 <h3>Available Services</h3>
-
                     <ul className="col-xs-12 top-padding no-pad-lr">
                         {
                             Object.keys(lin).map(function (key, index) {
@@ -45,8 +57,17 @@ class List extends Component {
                             })
                         }
                     </ul>
-                <Route path="/service/:servicedetail" component={Servdetail} />
+
             </div>
+            <div>
+                <footer>
+                <p><Link to='/jsonrfc'>toJson</Link></p>
+
+               </footer>
+           </div>
+            <Route path="/service/:servicedetail" component={Servdetail} />
+            <Route path="/jsonrfc" component={RfcList} />
+           </div>
         );
     }
 }
