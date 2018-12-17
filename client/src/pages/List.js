@@ -36,6 +36,7 @@ class List extends Component {
         return (
             <div className="col-xs-12 top-padding">
                 <h3>Available Services</h3>
+
                     <ul className="col-xs-12 top-padding no-pad-lr">
                         {
                             Object.keys(lin).map(function (key, index) {
@@ -44,7 +45,7 @@ class List extends Component {
                             })
                         }
                     </ul>
-                <Route path="/:servicedetail" component={Servdetail} />
+                <Route path="/service/:servicedetail" component={Servdetail} />
             </div>
         );
     }

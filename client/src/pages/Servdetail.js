@@ -45,6 +45,8 @@ class Servdetail extends Component {
     // Initialize the state
     constructor(props) {
         super(props);
+        console.log("ernesto");
+        console.log(this.targetService);
         this.targService = "/metadata/services?service=" + props.location.pathname;
         this.state = {
             service: {},
