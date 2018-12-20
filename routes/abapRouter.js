@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET oppna fel. */
 router.get('/',
   function(req, res, next) {
-
+    console.log("in get");
     req.lUtility.getRequest(req, req.baseUrl, "GET", res);
 
   });

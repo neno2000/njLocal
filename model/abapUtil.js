@@ -5,14 +5,38 @@ var util = {
   getRequest: function(req, service, method, res) {
 
     // get the session cookie
-    const host = req.tServices[service].host;
-    const portType = req.tServices[service].port;
+
+    console.log("ernesto");
+    console.log(service);
+    // check if the call is targeting the rfcJsonAdapter
+//########################Json Adapter Patch###########################
+    var serv = {};
+    if ( service.search("jsonrfcadapter") > -1){
+      //remove the last portion of the toString
+      var tmpService = service.substring(0,service.lastIndexOf("/"));
+      //check again if the service contain the jsonrfcstring
+      if  ( tmpService.search("jsonrfcadapter") > -1) {
+        serv.fm = service.substring(service.lastIndexOf("/")+1);
+        serv.service = tmpService;
+      }
+      else{
+        serv.service = service;
+        serv.fm = "";
+      }
+    }
+    else {
+      serv.service = service;
+      serv.fm = "";
+    }
+//########################Json Adapter Patch###########################
+    const host = req.tServices[serv.service].host;
+    const portType = req.tServices[serv.service].port;
     const authUrl = req.tServer.server.portHost + ":" +
       req.tServer.server.portPort + req.tServer.server.portAuth;
     const baseurl = req.tServer.server[host];
     const port = req.tServer.server[portType];
 
-    let password, username, auth, serviceurl = baseurl + ":" + port + service;
+    let password, username, auth, serviceurl = baseurl + ":" + port + serv.service + "/" + serv.fm ;
     // start by retrieveing the cookie....
 
     if (!req.headers.authorization) {
@@ -35,6 +59,7 @@ var util = {
       body: req.body,
       json: true
     }
+    console.log(options);
 
     //use to get the single sign on login.
     const options_auth = {
