@@ -1,6 +1,6 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Link as Link1 , Link as Link2, Route, Redirect } from 'react-router-dom';
+import { Link as Link1 , Link as Link2, Route } from 'react-router-dom';
 import Servdetail from './Servdetail';
 import RfcList from './RfcList';
 
@@ -10,21 +10,12 @@ class List extends Component {
         super(props);
         this.state = {
             list: [],
-            redirect: false,
             location: props.location.pathname
         }
         console.log(this.state.location);
     }
-    setRedirect = () => {
-        this.setState({
-            redirect: true
-        });
-    }
-    renderRedirect = () => {
-        if (this.state.redirect) {
-            return <Redirect to='/jsonrfc' />;
-        }
-    }
+
+
     // Fetch the list on first mount
     componentDidMount() {
         this.getList();
