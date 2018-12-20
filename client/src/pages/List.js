@@ -12,6 +12,7 @@ class List extends Component {
             list: [],
             location: props.location.pathname
         }
+
         console.log(this.state.location);
     }
 

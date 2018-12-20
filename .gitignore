@@ -6,6 +6,7 @@
 /client/build
 /client/static
 /client/src/index.css
+/client/src/config.js
 /config
 /.pnp
 /logs
