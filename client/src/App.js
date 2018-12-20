@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import './styles/App.css';
 import './styles/bootstrap.css';
 //import Home from './pages/Home';
@@ -12,12 +12,14 @@ class App extends Component {
     render() {
         const App = () => (
             <div>
-                <Switch>
-                    <Route exact path='/' component={List} />
-                    <Route exact path='/jsonrfc' component={RfcList} />
-                    <Route path='/jsonrfc/:fm' component={RfcDetails} />
-                    <Route path='/:servicedetail' component={Servdetail} />
-                </Switch>
+                <Router>
+                    <Switch>
+                        <Route exact path='/' component={List} />
+                        <Route exact path='/jsonrfc' component={RfcList} />
+                        <Route path='/jsonrfc/:fm' component={RfcDetails} />
+                        <Route path='/:servicedetail' component={Servdetail} />
+                    </Switch>
+                </Router>
             </div>
         );
         return (

@@ -1,6 +1,6 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Link, Route, Redirect } from 'react-router-dom';
+import { Link as Link1 , Link as Link2, Route, Redirect } from 'react-router-dom';
 import Servdetail from './Servdetail';
 import RfcList from './RfcList';
 
@@ -10,18 +10,20 @@ class List extends Component {
         super(props);
         this.state = {
             list: [],
-            redirect: false
+            redirect: false,
+            location: props.location.pathname
         }
+        console.log(this.state.location);
     }
     setRedirect = () => {
-      this.setState({
-        redirect: true
-      })
+        this.setState({
+            redirect: true
+        });
     }
     renderRedirect = () => {
-      if (this.state.redirect) {
-        return <Redirect to='/jsonrfc' />
-      }
+        if (this.state.redirect) {
+            return <Redirect to='/jsonrfc' />;
+        }
     }
     // Fetch the list on first mount
     componentDidMount() {
@@ -35,33 +37,38 @@ class List extends Component {
             .then(list => this.setState({ list }));
     }
 
-  render() {
-    const { list } = this.state;
-    console.log(list);
-    var lin = [];
-    for (var x in list) {
-          if (list.hasOwnProperty(x)) {
-              console.log(x);
-              lin.push(x);
-          }
-      }
+    render() {
+        const { list } = this.state;
+        console.log(list);
+        var lin = [];
+        for (var x in list) {
+            if (list.hasOwnProperty(x)) {
+                console.log(x);
+                lin.push(x);
+            }
+        }
         return (
-            <div className="col-xs-12 top-padding">
-                <h3>Available Services</h3>
+            <div>
+                <div className="col-xs-12 top-padding">
+                    <h3>Available Services</h3>
                     <ul className="col-xs-12 top-padding no-pad-lr">
                         {
                             Object.keys(lin).map(function (key, index) {
-                                return <li key={index} className="list-group-item"> <Link to={lin[key]}>{lin[key]
-                                }</Link></li>;
+                                return <li key={index} className="list-group-item"> <Link1 to={lin[key]}>{lin[key]
+                                }</Link1></li>;
                             })
                         }
                     </ul>
-                <footer>
-                    <p><Link to='/jsonrfc'>jsonRfcAdapter</Link></p>
-               </footer>
-            <Route path="/:servicedetail" component={Servdetail} />
-            <Route exact path="/jsonrfc" component={RfcList} />
-           </div>
+                </div>
+                <div className="col-xs-12">
+                    <h5></h5>
+                    <ul className="col-xs-12 top-padding no-pad-lr">
+                        <li className="list-group-item">
+                            <Link2 to='/jsonrfc' key={0}>jsonRfcAdapter</Link2>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         );
     }
 }
