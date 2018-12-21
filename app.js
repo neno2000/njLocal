@@ -73,8 +73,6 @@ app.use(cookieParser()); // needed to call services from ABAP
 }
 //serve static resources, react code will be here
 app.use(express.static(path.join(__dirname, 'client/build')));
-//app.use(logger('dev'));
-//app.use(morgan('combined'));
 app.use(morgan('combined', {
   stream: winston.stream
 }));
