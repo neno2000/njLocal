@@ -25,7 +25,6 @@ app.use(cookieParser()); // needed to call services from ABAP
   var conf = function(req, res, next) {
   req.tServer = config.get("conf").endpoint;   // get the endpoints
   // check if ABAP or Portal endpoint and assign function
-  console.log("jojo");
   console.log(req._parsedUrl.pathname);
   var serv = {};
   if ( req._parsedUrl.pathname.search("jsonrfcadapter") > -1){
@@ -95,32 +94,25 @@ app.use('/', indexRouter);   // index router. should start the React UI on 5000
 //Metadata Services, read the config file
 app.use('/metadata/services', metadataRouter);
 
-console.log(config.get("conf").resourcesLookup);
 var services = config.get("conf").resourcesLookup;
 for (var key in services) {
     if (services.hasOwnProperty(key)) {
         if (key.search("jsonrfcadapter") > -1)   //json adapter
           {
-            console.log("adapter");
-            console.log(services[key]);
             var tService = key + "*";
             app.use(tService, abapRouter);
           }
         else if (services[key].host === "abapHost") //abap routing
           {
-            console.log("abap");
-            console.log(services[key]);
             app.use(key, abapRouter);
-         }
+          }
         else if (services[key].host === "portHost") //java routing
           {
-            console.log("java");
-            console.log(services[key]);
             app.use(key, javaRouter);
           }
         else
           {
-          console.log("Routing not found");  //feedback to be implemented
+          console.log("Routing not found");  //To be implemented!!!
           }
         }
 
