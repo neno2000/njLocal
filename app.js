@@ -25,7 +25,6 @@ app.use(cookieParser()); // needed to call services from ABAP
   var conf = function(req, res, next) {
   req.tServer = config.get("conf").endpoint;   // get the endpoints
   // check if ABAP or Portal endpoint and assign function
-  console.log(req._parsedUrl.pathname);
   var serv = {};
   if ( req._parsedUrl.pathname.search("jsonrfcadapter") > -1){
     //remove the last portion of the toString
@@ -43,16 +42,10 @@ app.use(cookieParser()); // needed to call services from ABAP
 
   else if ( req._parsedUrl.pathname.search("openui5") > -1){
     //remove the last portion of the toString
-    var tmpService = req._parsedUrl.pathname.substring(0,req._parsedUrl.pathname.lastIndexOf("/"));
-    //check again if the service contain the jsonrfcstring
-    if  ( tmpService.search("openui5") > -1) {
-      serv.fm = req._parsedUrl.pathname.substring(req._parsedUrl.pathname.lastIndexOf("/")+1);
-      serv.service = tmpService;
-    }
-    else{
-      serv.service = req._parsedUrl.pathname;
-      serv.fm = "";
-    }
+    const path = req._parsedUrl.pathname.replace('/openui5', "");
+    serv.service = '/openui5';
+    serv.fm = path;
+
   }
 
   else {

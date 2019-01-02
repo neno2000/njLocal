@@ -24,16 +24,12 @@ var util = {
     else if ( service.search("openui5") > -1){
 
       //remove the last portion of the toString
-      var tmpService = service.substring(0,service.lastIndexOf("/"));
-      //check again if the service contain the jsonrfcstring
-      if  ( tmpService.search("openui5") > -1) {
-        serv.fm = service.substring(service.lastIndexOf("/")+1);
-        serv.service = tmpService;
-      }
-      else{
-        serv.service = service;
-        serv.fm = "";
-      }
+      //remove the last portion of the toString
+      console.log("Iam here");
+      const path = service.replace('/openui5', "");
+      serv.service = '/openui5';
+      serv.fm = path;
+      console.log(serv);
     }
     else {
       serv.service = service;
