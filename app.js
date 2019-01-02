@@ -40,6 +40,21 @@ app.use(cookieParser()); // needed to call services from ABAP
       serv.fm = "";
     }
   }
+
+  else if ( req._parsedUrl.pathname.search("openui5") > -1){
+    //remove the last portion of the toString
+    var tmpService = req._parsedUrl.pathname.substring(0,req._parsedUrl.pathname.lastIndexOf("/"));
+    //check again if the service contain the jsonrfcstring
+    if  ( tmpService.search("openui5") > -1) {
+      serv.fm = req._parsedUrl.pathname.substring(req._parsedUrl.pathname.lastIndexOf("/")+1);
+      serv.service = tmpService;
+    }
+    else{
+      serv.service = req._parsedUrl.pathname;
+      serv.fm = "";
+    }
+  }
+
   else {
     serv.service = req._parsedUrl.pathname;
     serv.fm = "";
@@ -96,6 +111,11 @@ var services = config.get("conf").resourcesLookup;
 for (var key in services) {
     if (services.hasOwnProperty(key)) {
         if (key.search("jsonrfcadapter") > -1)   //json adapter
+          {
+            var tService = key + "*";
+            app.use(tService, abapRouter);
+          }
+        else if (key.search("openui5") > -1)   //json adapter
           {
             var tService = key + "*";
             app.use(tService, abapRouter);

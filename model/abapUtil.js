@@ -5,9 +5,6 @@ var util = {
   getRequest: function(req, service, method, res) {
 
     // get the session cookie
-
-    console.log("ernesto");
-    console.log(service);
     // check if the call is targeting the rfcJsonAdapter
 //########################Json Adapter Patch###########################
     var serv = {};
@@ -16,6 +13,20 @@ var util = {
       var tmpService = service.substring(0,service.lastIndexOf("/"));
       //check again if the service contain the jsonrfcstring
       if  ( tmpService.search("jsonrfcadapter") > -1) {
+        serv.fm = service.substring(service.lastIndexOf("/")+1);
+        serv.service = tmpService;
+      }
+      else{
+        serv.service = service;
+        serv.fm = "";
+      }
+    }
+    else if ( service.search("openui5") > -1){
+
+      //remove the last portion of the toString
+      var tmpService = service.substring(0,service.lastIndexOf("/"));
+      //check again if the service contain the jsonrfcstring
+      if  ( tmpService.search("openui5") > -1) {
         serv.fm = service.substring(service.lastIndexOf("/")+1);
         serv.service = tmpService;
       }
