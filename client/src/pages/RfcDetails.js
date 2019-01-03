@@ -1,4 +1,4 @@
-import React, { Component, Link as LinkRfc } from 'react';
+import React, { Component, Link as Link } from 'react';
 import config from 'react-global-configuration';
 //import ParamTable from './ParamTable';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
