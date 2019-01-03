@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link as Link1 , Route } from 'react-router-dom';
 import config from 'react-global-configuration';
-import configuration from './../config';
-
 class RfcList extends React.Component {
   constructor(props) {
     super(props);
-    config.set(configuration, { freeze: false });
-
     this.state = {
         rfcList: []
       }
@@ -22,19 +18,16 @@ class RfcList extends React.Component {
 
       const targetUrl = config.get('rfcJsonAdapter') + '?action=exposed_fm&sap-client='
       +  config.get('targetClient');
-      console.log(targetUrl);
       fetch(targetUrl)
           .then(res => res.json())
           .then(rfcList => this.setState({ rfcList }));
   }
   render() {
       const { rfcList } = this.state;
-      console.log(rfcList);
       var lin = [];
       for (var x in rfcList) {
           if (rfcList.hasOwnProperty(x)) {
-              console.log(rfcList[x].funcname);
-              lin.push(rfcList[x].funcname);
+            lin.push(rfcList[x].funcname);
           }
       }
       return (

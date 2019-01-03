@@ -7,9 +7,13 @@ import List from './pages/List';
 import Servdetail from './pages/Servdetail';
 import RfcDetails from './pages/RfcDetails';
 import RfcList from './pages/RfcList';
+import configuration from './config';
+import config from 'react-global-configuration';
+
 
 class App extends Component {
     render() {
+        config.set(configuration, { freeze: false });
         const App = () => (
             <div>
                 <Router>

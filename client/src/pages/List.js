@@ -1,8 +1,8 @@
 /* Import statements */
 import React, { Component } from 'react';
-import { Link as Link1 , Link as Link2, Route } from 'react-router-dom';
-import Servdetail from './Servdetail';
-import RfcList from './RfcList';
+import { Link as LinkList , Link as LinkRfc} from 'react-router-dom';
+//import Servdetail from './Servdetail';
+//import RfcList from './RfcList';
 
 /* App component */
 class List extends Component {
@@ -46,17 +46,16 @@ class List extends Component {
                     <ul className="col-xs-12 top-padding no-pad-lr">
                         {
                             Object.keys(lin).map(function (key, index) {
-                                return <li key={index} className="list-group-item"> <Link1 to={lin[key]}>{lin[key]
-                                }</Link1></li>;
+                                return <li key={index} className="list-group-item"> <LinkList to={lin[key]}>{lin[key]
+                                }</LinkList></li>;
                             })
                         }
                     </ul>
                 </div>
                 <div className="col-xs-12">
-                    <h5></h5>
-                    <ul className="col-xs-12 top-padding no-pad-lr">
+                      <ul className="col-xs-12 top-padding no-pad-lr">
                         <li className="list-group-item">
-                            <Link2 to='/jsonrfc' key={0}>jsonRfcAdapter</Link2>
+                            <LinkRfc to='/jsonrfc' key={0}>jsonRfcAdapter</LinkRfc>
                         </li>
                     </ul>
                 </div>
