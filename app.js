@@ -40,14 +40,6 @@ app.use(cookieParser()); // needed to call services from ABAP
     }
   }
 
-  else if ( req._parsedUrl.pathname.search("openui5") > -1){
-    //remove the last portion of the toString
-    const path = req._parsedUrl.pathname.replace('/openui5', "");
-    serv.service = '/openui5';
-    serv.fm = path;
-
-  }
-
   else {
     serv.service = req._parsedUrl.pathname;
     serv.fm = "";
@@ -104,11 +96,6 @@ var services = config.get("conf").resourcesLookup;
 for (var key in services) {
     if (services.hasOwnProperty(key)) {
         if (key.search("jsonrfcadapter") > -1)   //json adapter
-          {
-            var tService = key + "*";
-            app.use(tService, abapRouter);
-          }
-        else if (key.search("openui5") > -1)   //json adapter
           {
             var tService = key + "*";
             app.use(tService, abapRouter);

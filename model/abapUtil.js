@@ -21,16 +21,7 @@ var util = {
         serv.fm = "";
       }
     }
-    else if ( service.search("openui5") > -1){
 
-      //remove the last portion of the toString
-      //remove the last portion of the toString
-      console.log("Iam here");
-      const path = service.replace('/openui5', "");
-      serv.service = '/openui5';
-      serv.fm = path;
-      console.log(serv);
-    }
     else {
       serv.service = service;
       serv.fm = "";
