@@ -70,7 +70,7 @@ class RfcDetails extends Component {
                   </ul>
               </div>
               <div className="col-xs-12 col-xs-12 bottom-padding">
-                  <title>bla bla</title>
+                  <title>Json Adapter</title>
                   <h3>Json Enable Function</h3>
                   <div className="top-padding">
                       <p>Detaljerad beskrivning for FM:</p>
