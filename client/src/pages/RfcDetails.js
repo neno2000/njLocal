@@ -6,11 +6,8 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 function onRowSelect(row, isSelected, e) {
     console.log(row);
     console.log(isSelected);
-
     alert('selected');
-
     return false;
-
 }
 const selectRowProp = {
   mode: 'radio',
