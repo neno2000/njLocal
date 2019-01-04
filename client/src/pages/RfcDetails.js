@@ -7,10 +7,7 @@ class RfcDetails extends Component {
       console.log(props);
       this.targService =  props.location.pathname;
       this.state = {
-          service: {},
-          isOpen: false ,
-          params: [],
-          types: []
+          service: {}
       };
       this.state.data = {
           data: props.location.pathname
@@ -65,10 +62,10 @@ class RfcDetails extends Component {
               </div>
               <div>
                 <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.params } >
-                  <TableHeaderColumn  dataField='fielname' isKey>Field Name</TableHeaderColumn>
-                  <TableHeaderColumn  dataField='fieltype'>Field Type</TableHeaderColumn>
-                  <TableHeaderColumn  dataField='description'>Description</TableHeaderColumn>
-                  <TableHeaderColumn  dataField='direccion'>Direccion</TableHeaderColumn>
+                  <TableHeaderColumn  width='200px' dataField='fielname' isKey>Field Name</TableHeaderColumn>
+                  <TableHeaderColumn  width='200px'  dataField='fieltype'>Field Type</TableHeaderColumn>
+                  <TableHeaderColumn  width='200px' dataField='description'>Description</TableHeaderColumn>
+                  <TableHeaderColumn  width='200px' dataField='direccion'>Direccion</TableHeaderColumn>
                 </BootstrapTable>
               </div>
               <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
@@ -78,11 +75,11 @@ class RfcDetails extends Component {
               </div>
               <div>
                 <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.types } >
-                  <TableHeaderColumn dataField='fielname' isKey filter={ { type: 'TextFilter', delay: 1000 } }>Field Name</TableHeaderColumn>
-                  <TableHeaderColumn dataField='fieltype'>Field Type</TableHeaderColumn>
-                  <TableHeaderColumn dataField='description' >Description</TableHeaderColumn>
-                  <TableHeaderColumn dataField='datatype' filter={ { type: 'TextFilter', delay: 1000 } }>Data Type</TableHeaderColumn>
-                  <TableHeaderColumn dataField='length'>Data Length</TableHeaderColumn>
+                  <TableHeaderColumn dataField='fielname' width='200px' isKey filter={ { type: 'TextFilter', delay: 1000 } }>Field Name</TableHeaderColumn>
+                  <TableHeaderColumn dataField='fieltype'  width='200px'>Field Type</TableHeaderColumn>
+                  <TableHeaderColumn dataField='description'  width='200px' >Description</TableHeaderColumn>
+                  <TableHeaderColumn dataField='datatype'  width='200px'>Data Type</TableHeaderColumn>
+                  <TableHeaderColumn dataField='length'  width='200px'>Data Length</TableHeaderColumn>
                 </BootstrapTable>
               </div>
           </div>
