@@ -39,14 +39,16 @@ class RfcDetails extends Component {
       console.log(service);
       return (
           <div>
-              <div className="col-xs-12 top-padding u-case">
-                  <ul className="list-inline">
-                      <li>
-                          <span className="glyphicon glyphicon-chevron-left"></span>
-                          <a className="" href="/jsonrfc">Tillbaka</a>
-                      </li>
-                  </ul>
-              </div>
+            <div className="col-xs-12 top-padding u-case">
+                <ul className="list-inline">
+                    <li>
+                        <span className="glyphicon glyphicon-chevron-left"></span>
+                    </li>
+                    <li>
+                        <a className="" href="/">Tillbaka</a>
+                    </li>
+                </ul>
+            </div>
               <div className="col-xs-12 col-xs-12 bottom-padding">
                   <title>Json Adapter</title>
                   <h3>Json Enabled Function Module</h3>
@@ -61,26 +63,28 @@ class RfcDetails extends Component {
                   </div>
               </div>
               <div>
-                <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.params } >
-                  <TableHeaderColumn  width='200px' dataField='fielname' isKey>Field Name</TableHeaderColumn>
-                  <TableHeaderColumn  width='200px'  dataField='fieltype'>Field Type</TableHeaderColumn>
-                  <TableHeaderColumn  width='200px' dataField='description'>Description</TableHeaderColumn>
-                  <TableHeaderColumn  width='200px' dataField='direccion'>Direccion</TableHeaderColumn>
-                </BootstrapTable>
-              </div>
-              <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
-                  <ul className="col-xs-12 no-pad-lr">
-                      <li className="list-group-item">Funktionalitet: {service.rfcDescription} , Exekveringsserver: abapHost, Supported actions GET & POST   === Types:</li>
-                  </ul>
-              </div>
-              <div>
-                <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.types } >
-                  <TableHeaderColumn dataField='fielname' width='200px' isKey filter={ { type: 'TextFilter', delay: 1000 } }>Field Name</TableHeaderColumn>
-                  <TableHeaderColumn dataField='fieltype'  width='150px'>Field Type</TableHeaderColumn>
-                  <TableHeaderColumn dataField='description'  width='200px' >Description</TableHeaderColumn>
-                  <TableHeaderColumn dataField='datatype'  width='50px'>Data Type</TableHeaderColumn>
-                  <TableHeaderColumn dataField='length'  width='50px'>Data Length</TableHeaderColumn>
-                </BootstrapTable>
+                <div>
+                  <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.params } >
+                    <TableHeaderColumn  width='200px' dataField='fielname' isKey>Field Name</TableHeaderColumn>
+                    <TableHeaderColumn  width='200px'  dataField='fieltype'>Field Type</TableHeaderColumn>
+                    <TableHeaderColumn  width='200px' dataField='description'>Description</TableHeaderColumn>
+                    <TableHeaderColumn  width='200px' dataField='direccion'>Direccion</TableHeaderColumn>
+                  </BootstrapTable>
+                </div>
+                <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
+                    <ul className="col-xs-12 no-pad-lr">
+                        <li className="list-group-item">Deep into the details of the function module: {data.substring(data.lastIndexOf('/')+1)} by checking the Parameters Type:</li>
+                    </ul>
+                </div>
+                <div>
+                  <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.types } >
+                    <TableHeaderColumn dataField='fielname' width='200px' isKey filter={ { type: 'TextFilter', delay: 1000 } }>Field Name</TableHeaderColumn>
+                    <TableHeaderColumn dataField='fieltype'  width='150px'>Field Type</TableHeaderColumn>
+                    <TableHeaderColumn dataField='description'  width='200px' >Description</TableHeaderColumn>
+                    <TableHeaderColumn dataField='datatype'  width='50px'>Data Type</TableHeaderColumn>
+                    <TableHeaderColumn dataField='length'  width='50px'>Data Length</TableHeaderColumn>
+                  </BootstrapTable>
+                </div>
               </div>
           </div>
       );
