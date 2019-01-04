@@ -7,6 +7,7 @@ import List from './pages/List';
 import Servdetail from './pages/Servdetail';
 import RfcDetails from './pages/RfcDetails';
 import RfcList from './pages/RfcList';
+import RfcTypes from './pages/RfcTypes';
 import configuration from './config';
 import config from 'react-global-configuration';
 
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route exact path='/' component={List} />
                         <Route exact path='/jsonrfc' component={RfcList} />
                         <Route path='/jsonrfc/:fm' component={RfcDetails} />
+                        <Route path='/jsonrfctypes/:fm' component={RfcTypes} />
                         <Route path='/:servicedetail' component={Servdetail} />
                     </Switch>
                 </Router>

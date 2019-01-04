@@ -6,6 +6,7 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 function onRowSelect(row, isSelected, e) {
     console.log(row);
     console.log(isSelected);
+    console.log(e);
     alert('selected');
     return false;
 }
@@ -18,7 +19,6 @@ const selectRowProp = {
 class RfcDetails extends Component {
   constructor(props) {
       super(props);
-      var tClient;
       console.log(props);
       this.targService =  props.location.pathname;
       this.state = {
@@ -49,9 +49,12 @@ class RfcDetails extends Component {
       const service = this.state.service;
       let allParams = [];
       let allTypes = [];
+      let combined = [];
     //  parameters = service.params ? service.params.inbound : {};
       allParams = service.params;
       allTypes = service.types;
+      let x, y;
+
       console.log(allParams);
       console.log(allTypes);
       const { data } = this.state.data;
@@ -68,12 +71,11 @@ class RfcDetails extends Component {
               </div>
               <div className="col-xs-12 col-xs-12 bottom-padding">
                   <title>Json Adapter</title>
-                  <h3>Json Enable Function</h3>
+                  <h3>Json Enabled Function Module</h3>
                   <div className="top-padding">
                       <p>Detaljerad beskrivning for FM:</p>
                       <p className="u-case f-bold">{data.substring(data.lastIndexOf('/')+1)}</p>
                   </div>
-
                   <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
                       <ul className="col-xs-12 no-pad-lr">
                           <li className="list-group-item">Funktionalitet: {service.rfcDescription}</li>
@@ -81,11 +83,9 @@ class RfcDetails extends Component {
                           <li className="list-group-item">Metod: GET & POST</li>
                       </ul>
                   </div>
-
-
               </div>
               <div>
-                <BootstrapTable data={ allParams } selectRow={ selectRowProp }>
+                <BootstrapTable tableBodyClass='ik-tbl-default' data={ allParams } >
                   <TableHeaderColumn dataField='fielname' isKey>Field Name</TableHeaderColumn>
                   <TableHeaderColumn dataField='fieltype'>Field Type</TableHeaderColumn>
                   <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
