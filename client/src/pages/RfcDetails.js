@@ -1,21 +1,6 @@
 import React, { Component, Link as Link } from 'react';
 import config from 'react-global-configuration';
-//import ParamTable from './ParamTable';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-
-function onRowSelect(row, isSelected, e) {
-    console.log(row);
-    console.log(isSelected);
-    console.log(e);
-    alert('selected');
-    return false;
-}
-const selectRowProp = {
-  mode: 'radio',
-  clickToSelect: true,
-  onSelect: onRowSelect
-};
-
 class RfcDetails extends Component {
   constructor(props) {
       super(props);
@@ -23,6 +8,7 @@ class RfcDetails extends Component {
       this.targService =  props.location.pathname;
       this.state = {
           service: {},
+          isOpen: false ,
           params: [],
           types: []
       };
@@ -30,6 +16,11 @@ class RfcDetails extends Component {
           data: props.location.pathname
       }
   }
+  toggleModal = () => {
+  this.setState({
+    isOpen: !this.state.isOpen
+  });
+}
   // Fetch the list on first mount
   componentDidMount() {
       this.getService();
@@ -47,16 +38,6 @@ class RfcDetails extends Component {
   }
   render() {
       const service = this.state.service;
-      let allParams = [];
-      let allTypes = [];
-      let combined = [];
-    //  parameters = service.params ? service.params.inbound : {};
-      allParams = service.params;
-      allTypes = service.types;
-      let x, y;
-
-      console.log(allParams);
-      console.log(allTypes);
       const { data } = this.state.data;
       console.log(service);
       return (
@@ -78,21 +59,32 @@ class RfcDetails extends Component {
                   </div>
                   <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
                       <ul className="col-xs-12 no-pad-lr">
-                          <li className="list-group-item">Funktionalitet: {service.rfcDescription}</li>
-                          <li className="list-group-item">Exekveringsserver: abapHost</li>
-                          <li className="list-group-item">Metod: GET & POST</li>
+                          <li className="list-group-item">Funktionalitet: {service.rfcDescription} , Exekveringsserver: abapHost, Supported actions GET & POST   === Parameters: </li>
                       </ul>
                   </div>
               </div>
               <div>
-                <BootstrapTable tableBodyClass='ik-tbl-default' data={ allParams } >
-                  <TableHeaderColumn dataField='fielname' isKey>Field Name</TableHeaderColumn>
-                  <TableHeaderColumn dataField='fieltype'>Field Type</TableHeaderColumn>
-                  <TableHeaderColumn dataField='description'>Description</TableHeaderColumn>
-                  <TableHeaderColumn dataField='direccion'>Direccion</TableHeaderColumn>
+                <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.params } >
+                  <TableHeaderColumn  dataField='fielname' isKey>Field Name</TableHeaderColumn>
+                  <TableHeaderColumn  dataField='fieltype'>Field Type</TableHeaderColumn>
+                  <TableHeaderColumn  dataField='description'>Description</TableHeaderColumn>
+                  <TableHeaderColumn  dataField='direccion'>Direccion</TableHeaderColumn>
                 </BootstrapTable>
               </div>
-
+              <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
+                  <ul className="col-xs-12 no-pad-lr">
+                      <li className="list-group-item">Funktionalitet: {service.rfcDescription} , Exekveringsserver: abapHost, Supported actions GET & POST   === Types:</li>
+                  </ul>
+              </div>
+              <div>
+                <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.types } >
+                  <TableHeaderColumn dataField='fielname' isKey filter={ { type: 'TextFilter', delay: 1000 } }>Field Name</TableHeaderColumn>
+                  <TableHeaderColumn dataField='fieltype'>Field Type</TableHeaderColumn>
+                  <TableHeaderColumn dataField='description' >Description</TableHeaderColumn>
+                  <TableHeaderColumn dataField='datatype' filter={ { type: 'TextFilter', delay: 1000 } }>Data Type</TableHeaderColumn>
+                  <TableHeaderColumn dataField='length'>Data Length</TableHeaderColumn>
+                </BootstrapTable>
+              </div>
           </div>
       );
   }
