@@ -76,10 +76,10 @@ class RfcDetails extends Component {
               <div>
                 <BootstrapTable tableBodyClass='ik-tbl-default' data={ service.types } >
                   <TableHeaderColumn dataField='fielname' width='200px' isKey filter={ { type: 'TextFilter', delay: 1000 } }>Field Name</TableHeaderColumn>
-                  <TableHeaderColumn dataField='fieltype'  width='200px'>Field Type</TableHeaderColumn>
+                  <TableHeaderColumn dataField='fieltype'  width='150px'>Field Type</TableHeaderColumn>
                   <TableHeaderColumn dataField='description'  width='200px' >Description</TableHeaderColumn>
-                  <TableHeaderColumn dataField='datatype'  width='200px'>Data Type</TableHeaderColumn>
-                  <TableHeaderColumn dataField='length'  width='200px'>Data Length</TableHeaderColumn>
+                  <TableHeaderColumn dataField='datatype'  width='50px'>Data Type</TableHeaderColumn>
+                  <TableHeaderColumn dataField='length'  width='50px'>Data Length</TableHeaderColumn>
                 </BootstrapTable>
               </div>
           </div>
