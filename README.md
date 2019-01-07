@@ -77,8 +77,8 @@ Client set up.
 1. create a file in njLocal->client->src->config.js
 
 const config = {
-    rfcJsonAdapter: '<place where the rfc adapter is specified in SICF>',
-    targetClient: '<defaul-sap-client>'
+    rfcJsonAdapter: "<place where the rfc adapter is specified in SICF>",
+    targetClient: "<defaul-sap-client>"
 };
 
 2.- build the client application.
