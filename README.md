@@ -91,6 +91,7 @@ npm run-script build. after build you are ready to use the application.
 START the server
 
 set NODE_ENV=uc1                the sap server id in the configuration file
+
 set REACT_APP_SAP_CLIENT=100
 
 npm start
