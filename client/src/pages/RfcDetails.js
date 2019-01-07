@@ -4,7 +4,6 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 class RfcDetails extends Component {
   constructor(props) {
       super(props);
-      console.log(props);
       this.targService =  props.location.pathname;
       this.state = {
           service: {}
@@ -21,13 +20,15 @@ class RfcDetails extends Component {
   // Fetch the list on first mount
   componentDidMount() {
       this.getService();
-      console.log("data fetched");
   }
   // Retrieves the list of items from the Express app
   getService = () => {
-      console.log(this.targService);
       let fm = this.targService.split("/");
-      let rfcMedatadata = config.get('rfcJsonAdapter') + "/" + fm[2] + "?action=metadata&sap-client=" + config.get('targetClient');
+      let sap_client = "100";    // use 100 as default
+      if(process.env.REACT_APP_SAP_CLIENT){
+        sap_client = process.env.REACT_APP_SAP_CLIENT;
+      }
+      let rfcMedatadata = config.get('rfcJsonAdapter') + "/" + fm[2] + "?action=metadata&sap-client=" + sap_client;
       fetch(rfcMedatadata)
           .then(res => res.json())
           .then(service => this.setState(
@@ -36,7 +37,6 @@ class RfcDetails extends Component {
   render() {
       const service = this.state.service;
       const { data } = this.state.data;
-      console.log(service);
       return (
           <div>
             <div className="col-xs-12 top-padding u-case">
@@ -58,7 +58,7 @@ class RfcDetails extends Component {
                   </div>
                   <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
                       <ul className="col-xs-12 no-pad-lr">
-                          <li className="list-group-item">Funktionalitet: {service.rfcDescription} , Exekveringsserver: abapHost, Supported actions GET & POST   === Parameters: </li>
+                          <li className="list-group-item">Funktionalitet: {service.rfcDescription} , Exekveringsserver: abapHost, Supported actions: GET & POST  Function Module Parameters: </li>
                       </ul>
                   </div>
               </div>
@@ -73,7 +73,7 @@ class RfcDetails extends Component {
                 </div>
                 <div className="col-xs-12 top-padding bottom-padding no-pad-lr">
                     <ul className="col-xs-12 no-pad-lr">
-                        <li className="list-group-item">Deep into the details of the function module: {data.substring(data.lastIndexOf('/')+1)} by checking the Parameters Type:</li>
+                        <li className="list-group-item">Deep into the details of the function module, Target service: {data.substring(data.lastIndexOf('/')+1)} by checking the Parameters Type:</li>
                     </ul>
                 </div>
                 <div>

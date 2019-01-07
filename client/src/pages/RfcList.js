@@ -15,9 +15,12 @@ class RfcList extends React.Component {
   // Retrieves the list of items from the Express app
   //target url must be replaced by a dynamically selected value
   getList = () => {
-
+      let sap_client = "100";    // use 100 as default
+      if(process.env.REACT_APP_SAP_CLIENT){
+        sap_client = process.env.REACT_APP_SAP_CLIENT;
+      }
       const targetUrl = config.get('rfcJsonAdapter') + '?action=exposed_fm&sap-client='
-      +  config.get('targetClient');
+      +  sap_client;
       fetch(targetUrl)
           .then(res => res.json())
           .then(rfcList => this.setState({ rfcList }));

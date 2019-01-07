@@ -1,5 +1,6 @@
 set arg1=%1
 set NODE_ENV=bcr
+set REACT_APP_SAP_CLIENT=100
 
 start npm start
 cd client

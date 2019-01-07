@@ -82,7 +82,6 @@ class Servdetail extends Component {
 
         }
         const { data } = this.state.data;
-
         return (
             <div>
                 <div className="col-xs-12 top-padding u-case">

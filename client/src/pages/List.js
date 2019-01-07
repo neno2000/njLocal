@@ -13,10 +13,7 @@ class List extends Component {
             location: props.location.pathname
         }
 
-        console.log(this.state.location);
     }
-
-
     // Fetch the list on first mount
     componentDidMount() {
         this.getList();
@@ -31,7 +28,6 @@ class List extends Component {
 
     render() {
         const { list } = this.state;
-        console.log(list);
         var lin = [];
         for (var x in list) {
             if (list.hasOwnProperty(x)) {
