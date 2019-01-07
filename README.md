@@ -27,7 +27,9 @@ you need a file named.
 uc1.json with the below content.
 
 {
+
   "conf": {
+  
     "endpoint": {
       "server": {
         "portHost": "http://<SAML provider>",
@@ -47,21 +49,24 @@ uc1.json with the below content.
 3.- expose the available services via a json file.
 
 {
-  "conf": {
+	"conf": {
 
-    "resourcesLookup": {
-      "<sap abap service to call>": {
-        "host": "abapHost",                   
-        "port": "abapPort"
-      },
-      "<sap java service to call>": {
-        "host": "portHost",
-        "port": "portPort",
-        "description": "does this and that",
-        "method": "GET",
-        "params": { "inbound": [] }
-      }
-      }
+		"resourcesLookup": {
+			"<sap abap service to call>": {
+				"host": "abapHost",
+				"port": "abapPort"
+			},
+			"<sap java service to call>": {
+				"host": "portHost",
+				"port": "portPort",
+				"description": "does this and that",
+				"method": "GET",
+				"params": {
+					"inbound": []
+				}
+			}
+		}
+	}
 }
 
 The name are not the best and may be modified but then code changes are needed!!!!
