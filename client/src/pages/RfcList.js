@@ -20,7 +20,8 @@ class RfcList extends React.Component {
         sap_client = process.env.REACT_APP_SAP_CLIENT;
       }
       const targetUrl = config.get('rfcJsonAdapter') + '?action=exposed_fm&sap-client='
-      +  sap_client;
+          + sap_client;
+      console.log(targetUrl);
       fetch(targetUrl)
           .then(res => res.json())
           .then(rfcList => this.setState({ rfcList }));
