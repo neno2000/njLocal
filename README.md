@@ -60,8 +60,7 @@ uc1.json with the below content.
         "description": "does this and that",
         "method": "GET",
         "params": { "inbound": [] }
-      },
-      ...... other services, etc
+      }
       }
 }
 
