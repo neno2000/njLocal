@@ -1,5 +1,6 @@
 # njLocal
-NodeJs Local server to improve development productivity,
+NodeJs Local server to improve development productivity
+
 Functionality:
 
 1 . Avoid CSRF problems by making external services available in the localdomain.
