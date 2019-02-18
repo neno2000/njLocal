@@ -33,8 +33,16 @@ var util = {
       req.tServer.server.portPort + req.tServer.server.portAuth;
     const baseurl = req.tServer.server[host];
     const port = req.tServer.server[portType];
+    console.log(serv.fm);
+    if(serv.fm === "")
+    {
+      console.log("in if");
+    }else{
+      serv.fm = "/" + serv.fm;
+      console.log("in else");
+    }
+      let password, username, auth, serviceurl = baseurl + ":" + port + serv.service + serv.fm ;
 
-    let password, username, auth, serviceurl = baseurl + ":" + port + serv.service + "/" + serv.fm ;
     // start by retrieveing the cookie....
 
     if (!req.headers.authorization) {

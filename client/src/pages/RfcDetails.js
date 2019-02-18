@@ -47,7 +47,7 @@ class RfcDetails extends Component {
                             <span className="glyphicon glyphicon-chevron-left"></span>
                         </li>
                         <li>
-                            <Link2 to="/jsonrfc">Tillbaka igen</Link2>
+                            <Link2 to="/jsonrfc">Tillbaka</Link2>
                         </li>
                     </ul>
                 </div>

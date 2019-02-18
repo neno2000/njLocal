@@ -16,8 +16,11 @@ class RfcList extends React.Component {
   //target url must be replaced by a dynamically selected value
   getList = () => {
       let sap_client = "100";    // use 100 as default
-      if(process.env.REACT_APP_SAP_CLIENT){
-        sap_client = process.env.REACT_APP_SAP_CLIENT;
+      let sap_in_pro = process.env.REACT_APP_SAP_CLIENT;
+      console.log("Hello");
+      console.log(sap_in_pro);
+      if(sap_in_pro){
+        sap_client = sap_in_pro;
       }
       const targetUrl = config.get('rfcJsonAdapter') + '?action=exposed_fm&sap-client='
           + sap_client;
